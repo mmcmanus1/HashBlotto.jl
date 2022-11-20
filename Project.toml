@@ -1,6 +1,6 @@
-name = "new"
-uuid = "386882c1-4d0b-4691-8f92-ca90fb65b29b"
-authors = ["."]
+name = "v1"
+uuid = "16202f79-f0b3-4048-a0d2-7ecb0e04bfdb"
+authors = ["mmcmanus1 <mattmcmanus41@gmail.com> and contributors"]
 version = "0.1.0"
 
 [compat]

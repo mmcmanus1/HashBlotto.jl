@@ -1,16 +1,16 @@
-using new
+using v1
 using Documenter
 
-DocMeta.setdocmeta!(new, :DocTestSetup, :(using new); recursive=true)
+DocMeta.setdocmeta!(v1, :DocTestSetup, :(using v1); recursive=true)
 
 makedocs(;
-    modules=[new],
-    authors=".",
-    repo="https://github.com/mattmcm/new.jl/blob/{commit}{path}#{line}",
-    sitename="new.jl",
+    modules=[v1],
+    authors="mmcmanus1 <mattmcmanus41@gmail.com> and contributors",
+    repo="https://github.com/mmcmanus1/v1.jl/blob/{commit}{path}#{line}",
+    sitename="v1.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://mattmcm.github.io/new.jl",
+        canonical="https://mmcmanus1.github.io/v1.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -20,6 +20,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/mattmcm/new.jl",
+    repo="github.com/mmcmanus1/v1.jl",
     devbranch="main",
 )

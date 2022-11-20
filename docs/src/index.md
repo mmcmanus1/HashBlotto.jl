@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = new
+CurrentModule = v1
 ```
 
-# new
+# v1
 
-Documentation for [new](https://github.com/mattmcm/new.jl).
+Documentation for [v1](https://github.com/mmcmanus1/v1.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [new]
+Modules = [v1]
 ```
