@@ -1,16 +1,16 @@
-using NewBlottoJulia
+using new
 using Documenter
 
-DocMeta.setdocmeta!(NewBlottoJulia, :DocTestSetup, :(using NewBlottoJulia); recursive=true)
+DocMeta.setdocmeta!(new, :DocTestSetup, :(using new); recursive=true)
 
 makedocs(;
-    modules=[NewBlottoJulia],
-    authors="mattmcm <mattmcm@mit.edu> and contributors",
-    repo="https://github.com/mmcmanus1/NewBlottoJulia.jl/blob/{commit}{path}#{line}",
-    sitename="NewBlottoJulia.jl",
+    modules=[new],
+    authors=".",
+    repo="https://github.com/mattmcm/new.jl/blob/{commit}{path}#{line}",
+    sitename="new.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://mmcmanus1.github.io/NewBlottoJulia.jl",
+        canonical="https://mattmcm.github.io/new.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -20,6 +20,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/mmcmanus1/NewBlottoJulia.jl",
+    repo="github.com/mattmcm/new.jl",
     devbranch="main",
 )

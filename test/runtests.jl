@@ -1,6 +1,6 @@
-using NewBlottoJulia
+using new
 using Test
 
-@testset "NewBlottoJulia.jl" begin
+@testset "new.jl" begin
     # Write your tests here.
 end

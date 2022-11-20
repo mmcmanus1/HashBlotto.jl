@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = NewBlottoJulia
+CurrentModule = new
 ```
 
-# NewBlottoJulia
+# new
 
-Documentation for [NewBlottoJulia](https://github.com/mmcmanus1/NewBlottoJulia.jl).
+Documentation for [new](https://github.com/mattmcm/new.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [NewBlottoJulia]
+Modules = [new]
 ```

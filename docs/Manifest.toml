@@ -2,7 +2,7 @@
 
 julia_version = "1.8.2"
 manifest_format = "2.0"
-project_hash = "2440aa55d2c20e556bd15b3534ff0cb10e33348a"
+project_hash = "6455d249f99fb3741d97c0a910b9e4ffbe5a3b34"
 
 [[deps.ANSIColoredPrinters]]
 git-tree-sha1 = "574baf8110975760d391c710b6341da1afa48d8c"
@@ -62,11 +62,6 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
 version = "1.2.0"
 
-[[deps.NewBlottoJulia]]
-path = ".."
-uuid = "a328b6f9-d090-4a49-b822-82d29153eed4"
-version = "0.1.0"
-
 [[deps.Parsers]]
 deps = ["Dates", "SnoopPrecompile"]
 git-tree-sha1 = "b64719e8b4504983c7fca6cc9db3ebc8acc2a4d6"
@@ -106,3 +101,8 @@ uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [[deps.Unicode]]
 uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
+
+[[deps.new]]
+path = ".."
+uuid = "386882c1-4d0b-4691-8f92-ca90fb65b29b"
+version = "0.1.0"

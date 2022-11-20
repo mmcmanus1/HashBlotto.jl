@@ -1,4 +1,4 @@
-module NewBlottoJulia
+module new
 
 # Write your package code here.
 

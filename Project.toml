@@ -1,6 +1,6 @@
-name = "NewBlottoJulia"
-uuid = "a328b6f9-d090-4a49-b822-82d29153eed4"
-authors = ["mattmcm <mattmcm@mit.edu> and contributors"]
+name = "new"
+uuid = "386882c1-4d0b-4691-8f92-ca90fb65b29b"
+authors = ["."]
 version = "0.1.0"
 
 [compat]
