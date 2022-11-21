@@ -8,9 +8,7 @@ A package that is to be used for class C25
 
 
 module HashBlotto
-
 using HashCode2014
-
 export random_walking
 
 
