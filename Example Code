@@ -48,21 +48,23 @@ function greedy(graph, start)
     the untraversed adjacent edge with maximum distance.
     If none-such exist: perform a random walk until encountering one, or until time runs out. 
     """
-	queue = [(start, 0)]
     time, visited, greedy_path = 0, [], []
     outneighbors = get_outneighbors(g, junction, t)
-	# while !isempty(queue)
-    while outneighbors
+    while length(outneighbors) != 0
         unvisited_neighbors = get_unvisited(v, visited)
         if unvisited_neighbors
             pass # Check the max length unvisited one.
             # If no more possible 
         else
-            rand(outneighbors(graph, u))
+            # next explored is (junction, time, distance)
+            next_explored = rand(outneighbors) # Should maybe weight by time in future
+            time += next_explored[2]
+            push!(visited, next_explored[1])
+            push!(greedy_path, next_explored[1])
         end
         outneighbors = get_outneighbors(g, u, t)
     end
-    return dist
+    return greedy_path
 end
 
 nb_vertices(edge_dict) = length(keys(edge_dict))
@@ -89,12 +91,15 @@ function get_outneighbors_and_distances(g, junction, t, allowedTime)
     """
     # Dict(junctions .=> (possible_neighbor, duration, distance))
     mapping = g[junction]
-    zipped = [(neighbor[1], neighbor[3]) for neighbor in mapping if t + neighbor[2] < allowedTime]
-    if length(zipped) == 0
-        return []
-    end
-    outneighbors, distances = collect(zip(zipped...))
-    return outneighbors, distances
+    zipped = [neighbor for neighbor in mapping if t + neighbor[2] < allowedTime]
+    return zipped
+    # if length(zipped) == 0
+    #     return []
+    # end
+    # outneighbors, distances = collect(zip(zipped...))
+    # return outneighbors, distances
+    # Commented is a possible different output, if desired
 end
 
 print(get_outneighbors_and_distances(edges, 8660, 10, 0))
+print(get_outneighbors_and_distances(edges, 8660, 10, 10000))
