@@ -5,9 +5,11 @@ version = "0.1.0"
 
 [compat]
 julia = "1.8"
+HashCode2014 = "0.1.0""
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
 
 [targets]
-test = ["Test"]
+test = ["Test", "HashCode2014"]
