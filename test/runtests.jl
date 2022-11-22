@@ -11,7 +11,6 @@ DocMeta.setdocmeta!(
 	recursive=true
 )
 
-
 @testset verbose = true "HashBlotto.jl" begin
     @testset verbose = true "Code quality (Aqua.jl)" begin
         Aqua.test_all(HashBlotto; ambiguities=false)
