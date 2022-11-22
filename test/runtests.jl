@@ -4,12 +4,7 @@ using HashBlotto
 using JuliaFormatter
 using Test
 
-DocMeta.setdocmeta!(
-	MyJuliaPackage,
-	:DocTestSetup,
-	:(using HashBlotto);
-	recursive=true
-)
+DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=true)
 
 @testset verbose = true "HashBlotto.jl" begin
     @testset verbose = true "Code quality (Aqua.jl)" begin

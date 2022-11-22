@@ -20,9 +20,9 @@ was already built out for us, I definetly made it better as it is smarter in how
 
 function greed(city)
     (; total_duration, nb_cars, starting_junction, streets) = city
-    
+
     moves = Vector{Vector{Int}}(undef, nb_cars)
-    visited = Dict{Int, Vector{Int}}()
+    visited = Dict{Int,Vector{Int}}()
 
     print("number of cars, nb_cars", nb_cars)
 
@@ -70,12 +70,11 @@ function greed(city)
                         elseif street.endpointB in keys(visited)
                             #if the street has been visited before we will divide the 
                             #value in half
-                            
-                            if val/(2*visited[street.endpointB]) > max_val
-                                max_val = val/(2*visited[street.endpointB])
+
+                            if val / (2 * visited[street.endpointB]) > max_val
+                                max_val = val / (2 * visited[street.endpointB])
                                 max_street = street
                             end
-
                         end
                     end
                 end
@@ -88,7 +87,6 @@ function greed(city)
                 else
                     node = max_street.endpointA
                 end
-
 
                 #update the streets, duration, and visited
 
@@ -104,9 +102,7 @@ function greed(city)
                 print("duration", duration)
                 println()
                 break
-
             end
-
         end
         moves[c] = move
     end

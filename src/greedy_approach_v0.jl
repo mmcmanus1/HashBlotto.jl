@@ -25,8 +25,6 @@ function get_edge_dictionary(city)
     return edges
 end
 
-
-
 function greedy(graph, start)
     """
     A greedy single agent walk.
@@ -38,10 +36,10 @@ function greedy(graph, start)
 
     """
     dist = fill(Inf, nb_vertices(graph))  # here
-	queue = [(start, 0)]
+    queue = [(start, 0)]
     time, visited, greedy_path = 0, [], []
     outneighbors = get_outneighbors(g, junction, t)
-	# while !isempty(queue)
+    # while !isempty(queue)
     while outneighbors
         unvisited_neighbors = get_unvisited(v, visited)
 
@@ -58,8 +56,6 @@ function greedy(graph, start)
             push!(visited, max_neighbor[1])
             time += max_neighbor[2]
             dist.push(max_neighbor[3])
-
-
 
         else
             rand(outneighbors(graph, u))
@@ -93,7 +89,9 @@ function get_outneighbors_and_distances(g, junction, t, allowedTime)
     """
     # Dict(junctions .=> (possible_neighbor, duration, distance))
     mapping = g[junction]
-    zipped = [(neighbor[1], neighbor[3]) for neighbor in mapping if t + neighbor[2] < allowedTime]
+    zipped = [
+        (neighbor[1], neighbor[3]) for neighbor in mapping if t + neighbor[2] < allowedTime
+    ]
     if length(zipped) == 0
         return []
     end
