@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = v1
+CurrentModule = HashBlotto
 ```
 
-# v1
+# HashBlotto
 
-Documentation for [v1](https://github.com/mmcmanus1/v1.jl).
+Documentation for [HashBlotto](https://github.com/mmcmanus1/HashBlotto.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [v1]
+Modules = [HashBlotto]
 ```

@@ -1,0 +1,3 @@
+using HashBlotto
+
+greed(city)

@@ -102,7 +102,7 @@ uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 [[deps.Unicode]]
 uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 
-[[deps.v1]]
+[[deps.HashBlotto]]
 path = ".."
 uuid = "16202f79-f0b3-4048-a0d2-7ecb0e04bfdb"
 version = "0.1.0"

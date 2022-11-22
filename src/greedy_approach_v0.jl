@@ -1,16 +1,3 @@
-import Pkg;
-
-# Pkg.add("BenchmarkTools"); Pkg.add("DataStructures"); Pkg.add("PlutoTeachingTools"); Pkg.add("PlutoUI"); Pkg.add("SparseArrays"); 
-
-# using BenchmarkTools
-# using DataStructures
-# using PlutoTeachingTools
-# using PlutoUI
-using SparseArrays
-using HashCode2014
-
-city = read_city()
-allowedTime, n, init_j = city.total_duration, city.nb_cars, city.starting_junction
 
 function get_edge_dictionary(city)
     """
@@ -38,11 +25,8 @@ function get_edge_dictionary(city)
     return edges
 end
 
-#(possible_neighbor, duration, distance)
 
 
-edges = get_edge_dictionary(city)
-# println(edges)
 function greedy(graph, start)
     """
     A greedy single agent walk.

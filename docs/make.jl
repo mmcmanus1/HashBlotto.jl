@@ -1,16 +1,16 @@
-using v1
+using HashBlotto
 using Documenter
 
-DocMeta.setdocmeta!(v1, :DocTestSetup, :(using v1); recursive=true)
+DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=true)
 
 makedocs(;
-    modules=[v1],
+    modules=[HashBlotto],
     authors="mmcmanus1 <mattmcmanus41@gmail.com> and contributors",
-    repo="https://github.com/mmcmanus1/v1.jl/blob/{commit}{path}#{line}",
-    sitename="v1.jl",
+    repo="https://github.com/mmcmanus1/HashBlotto.jl/blob/{commit}{path}#{line}",
+    sitename="HashBlotto.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://mmcmanus1.github.io/v1.jl",
+        canonical="https://mmcmanus1.github.io/HashBlotto.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -20,6 +20,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/mmcmanus1/v1.jl",
+    repo="github.com/mmcmanus1/HashBlotto.jl",
     devbranch="main",
 )

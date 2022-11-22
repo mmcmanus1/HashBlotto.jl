@@ -1,20 +1,18 @@
-name = "v1"
+name = "HashBlotto"
 uuid = "16202f79-f0b3-4048-a0d2-7ecb0e04bfdb"
 authors = ["mmcmanus1 <mattmcmanus41@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
 [compat]
 julia = "1.8"
-HashCode2014 = "0.1.0""
-Aqua = "0.5"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
 
 [targets]
-test = ["Test", "HashCode2014"]
-
-
-[deps]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+test = ["Test"]

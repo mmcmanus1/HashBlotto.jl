@@ -26,14 +26,14 @@ jobs:
           - x64
     steps:
       - uses: actions/checkout@v2
-      - uses: julia-actions/setup-julia@v1
+      - uses: julia-actions/setup-julia@HashBlotto
         with:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
-      - uses: julia-actions/cache@v1
-      - uses: julia-actions/julia-buildpkg@v1
-      - uses: julia-actions/julia-runtest@v1
-      - uses: julia-actions/julia-processcoverage@v1
+      - uses: julia-actions/cache@HashBlotto
+      - uses: julia-actions/julia-buildpkg@HashBlotto
+      - uses: julia-actions/julia-runtest@HashBlotto
+      - uses: julia-actions/julia-processcoverage@HashBlotto
       - uses: codecov/codecov-action@v2
         with:
           files: lcov.info
@@ -44,16 +44,16 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v2
-      - uses: julia-actions/setup-julia@v1
+      - uses: julia-actions/setup-julia@HashBlotto
         with:
           version: '1'
-      - uses: julia-actions/julia-buildpkg@v1
-      - uses: julia-actions/julia-docdeploy@v1
+      - uses: julia-actions/julia-buildpkg@HashBlotto
+      - uses: julia-actions/julia-docdeploy@HashBlotto
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
-            using v1
-            DocMeta.setdocmeta!(v1, :DocTestSetup, :(using v1); recursive=true)
-            doctest(v1)'
+            using HashBlotto
+            DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=true)
+            doctest(HashBlotto)'

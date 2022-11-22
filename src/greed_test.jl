@@ -18,8 +18,6 @@ was already built out for us, I definetly made it better as it is smarter in how
 
 """
 
-using HashCode2014
-city = read_city()
 function greed(city)
     (; total_duration, nb_cars, starting_junction, streets) = city
     
@@ -81,8 +79,9 @@ function greed(city)
                         end
                     end
                 end
-                println(max_street[2].endpointB)
-                println(max_street)
+                # println(max_street[2].endpointB)
+                # println(max_street)
+                max_street = max_street[2]
 
                 if current_junction == max_street.endpointA
                     node = max_street.endpointB
@@ -92,6 +91,8 @@ function greed(city)
 
 
                 #update the streets, duration, and visited
+
+                println("\n\n\n", move)
                 push!(move[c], node)
                 duration += max_street.duration
                 if max_street in keys(visited)
@@ -111,5 +112,3 @@ function greed(city)
     end
     return Solution(moves)
 end
-
-greed(city)
