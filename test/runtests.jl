@@ -12,13 +12,6 @@ DocMeta.setdocmeta!(
 )
 
 @testset verbose = true "MyJuliaPackage.jl" begin
-    @testset verbose = true "Code quality (Aqua.jl)" begin
-        Aqua.test_all(MyJuliaPackage; ambiguities=false)
-    end
-
-    @testset verbose = true "Code formatting (JuliaFormatter.jl)" begin
-        @test format(MyJuliaPackage; verbose=true, overwrite=false)
-    end
 
     @testset verbose = true "Doctests (Documenter.jl)" begin
         doctest(MyJuliaPackage)
