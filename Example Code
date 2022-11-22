@@ -48,17 +48,19 @@ function greedy(graph, start)
     the untraversed adjacent edge with maximum distance.
     If none-such exist: perform a random walk until encountering one, or until time runs out. 
     """
-    dist = fill(Inf, nb_vertices(graph))  # here
 	queue = [(start, 0)]
-    visited = []
-	while !isempty(queue)
-        u, dist[u] = queue[1]
-        unvisited_neighbor = get_unvisited(v, visited)
-        if unvisited_neighbor
-            pass
+    time, visited, greedy_path = 0, [], []
+    outneighbors = get_outneighbors(g, junction, t)
+	# while !isempty(queue)
+    while outneighbors
+        unvisited_neighbors = get_unvisited(v, visited)
+        if unvisited_neighbors
+            pass # Check the max length unvisited one.
+            # If no more possible 
         else
-            rand(outneighbors(graph, u) )
+            rand(outneighbors(graph, u))
         end
+        outneighbors = get_outneighbors(g, u, t)
     end
     return dist
 end
@@ -71,7 +73,6 @@ function get_unvisited(list, visited)
     return x
 end
 
-get_unvisited([1,2,3], [3,4])
 # function edge_weight(g::ListGraph, u, v)
 # 	for (x, y, w) in g.edges
 # 		if (x, y) == (u, v)
@@ -80,12 +81,20 @@ get_unvisited([1,2,3], [3,4])
 # 	end
 # end
 
-# function outneighbors(g::ListGraph, u)
-# 	out = Int[]
-# 	for (x, y, w) in g.edges
-# 		if x == u
-# 			push!(out, y)
-# 		end
-# 	end
-# 	return out
-# end
+function get_outneighbors_and_distances(g, junction, t, allowedTime)
+    """
+    Get the outneighbors of an edge and the corresponding distance u
+     given a time constraint t.
+    Returns the empty array if none are possible
+    """
+    # Dict(junctions .=> (possible_neighbor, duration, distance))
+    mapping = g[junction]
+    zipped = [(neighbor[1], neighbor[3]) for neighbor in mapping if t + neighbor[2] < allowedTime]
+    if length(zipped) == 0
+        return []
+    end
+    outneighbors, distances = collect(zip(zipped...))
+    return outneighbors, distances
+end
+
+print(get_outneighbors_and_distances(edges, 8660, 10, 0))
