@@ -58,8 +58,9 @@ function greed(city)
                 max_val = -10
                 #just look at the first one
                 max_street = street_candidates[1]
-
-                println("street_candidates")
+                println("indexxxxxxxxxxxxx ", street_candidates)
+                println()
+                # println("street_candidates")
                 for (s, street) in street_candidates
                     val = street.distance / street.duration
                     break
@@ -80,14 +81,23 @@ function greed(city)
                         end
                     end
                 end
+                println(max_street[2].endpointB)
+                println(max_street)
+
+                if current_junction == max_street.endpointA
+                    node = max_street.endpointB
+                else
+                    node = max_street.endpointA
+                end
+
 
                 #update the streets, duration, and visited
-                push!(move[c], max_street.endpointB)
+                push!(move[c], node)
                 duration += max_street.duration
-                if max_street.endpointB in visited.keys()
-                    visited[max_street.endpointB] += 1
+                if max_street in keys(visited)
+                    visited[max_street] += 1
                 else
-                    visited[max_street.endpointB] = 1
+                    visited[max_street] = 1
                 end
 
                 print("duration", duration)
