@@ -91,7 +91,7 @@ function greed(city)
                 #update the streets, duration, and visited
 
                 println("\n\n\n", move)
-                push!(move[c], node)
+                push!(moves[c], node)
                 duration += max_street.duration
                 if max_street in keys(visited)
                     visited[max_street] += 1
