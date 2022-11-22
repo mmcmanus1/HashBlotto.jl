@@ -1,0 +1,111 @@
+import Pkg;
+
+# Pkg.add("BenchmarkTools"); Pkg.add("DataStructures"); Pkg.add("PlutoTeachingTools"); Pkg.add("PlutoUI"); Pkg.add("SparseArrays"); 
+
+# using BenchmarkTools
+# using DataStructures
+# using PlutoTeachingTools
+# using PlutoUI
+using SparseArrays
+using HashCode2014
+
+city = read_city()
+allowedTime, n, init_j = city.total_duration, city.nb_cars, city.starting_junction
+
+edges = Dict()
+for edge in city_streets
+    A, B, time, dist = edge.endpointA, edge.endpointB, edge.duration, edge.distance
+    if A in keys(edges)
+        push!(edges[A], (B, time, dist))
+    else
+        edges[A] = [(B, time, dist)] # Create a dict with A goes to B, time, distance
+    end
+    if edge.bidirectional
+        if B in keys(edges)
+            push!(edges[B], (A, time, dist))
+        else
+            edges[B] = [(A, time, dist)]
+        end
+    end
+end
+
+edges
+
+# abstract type AbstractWeightedGraph end
+
+# struct SparseMatrixGraph <: AbstractWeightedGraph
+#     A::SparseMatrixCSC{Float64,Int}
+# end
+
+# function SparseMatrixGraph(n, edges)
+#     U, V, W = Int[], Int[], Float64[]
+#     for (u, v, wᵤᵥ) in edges
+#         push!(U, u); push!(V, v); push!(W, wᵤᵥ)
+#     end
+#     A = sparse(U, V, W, n, n)
+#     return SparseMatrixGraph(A)
+# end
+
+# city_streets = city.streets
+
+
+# SparseMatrixGraph(length(junctions), edges)
+# for street in city_streets
+
+# junctions::Vector{Junction}: list of junctions
+# streets::Vector{Street}: list of streets
+# junctions = city.junctions
+# print(junctions[1:10])
+# add https://github.com/gdalle/HashCode2014.jl
+
+# dijkstra: find shortest path:
+# initiali
+# - Start with distance set to infinity except S, which starts at 0. 
+# - Initialize a priority queue (min heap).
+# - Go to nodes surrounding the node with the smallest distance and relax the edge. Add them to the priority queue.
+# - Once you finish, you add the current node to the visited set. You never check nodes that have been visited.
+# - Also, store the parent of the node, so you can trace back.
+
+# function dijkstra(g::AbstractWeightedGraph, s)
+#     dist = fill(Inf, nb_vertices(g))  # here
+# 	queue = PriorityQueue{Int,Float64}()
+#     enqueue!(queue, s => 0.0)
+# 	while !isempty(queue)
+#         u, dist[u] = dequeue_pair!(queue)
+#         for v in outneighbors(g, u)  # here
+#             dist_v = dist[u] + edge_weight(g, u, v)  # here
+#             if dist_v < dist[v]
+#                 dist[v] = dist_v
+#                 queue[v] = dist_v
+#             end
+#         end
+#     end
+#     return dist
+# end
+
+# abstract type AbstractWeightedGraph end
+
+# struct ListGraph <: AbstractWeightedGraph
+# 	n::Int
+# 	edges::Vector{Tuple{Int,Int,Float64}}
+# end
+
+# nb_vertices(g::ListGraph) = g.n
+
+# function edge_weight(g::ListGraph, u, v)
+# 	for (x, y, w) in g.edges
+# 		if (x, y) == (u, v)
+# 			return w
+# 		end
+# 	end
+# end
+
+# function outneighbors(g::ListGraph, u)
+# 	out = Int[]
+# 	for (x, y, w) in g.edges
+# 		if x == u
+# 			push!(out, y)
+# 		end
+# 	end
+# 	return out
+# end
