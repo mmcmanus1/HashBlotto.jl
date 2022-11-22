@@ -1,23 +1,25 @@
 using Aqua
 using Documenter
-using MyJuliaPackage
+using HashBlotto
 using JuliaFormatter
 using Test
 
 DocMeta.setdocmeta!(
 	MyJuliaPackage,
 	:DocTestSetup,
-	:(using MyJuliaPackage);
+	:(using HashBlotto);
 	recursive=true
 )
 
-@testset verbose = true "MyJuliaPackage.jl" begin
 
-    @testset verbose = true "Doctests (Documenter.jl)" begin
-        doctest(MyJuliaPackage)
+@testset verbose = true "HashBlotto.jl" begin
+    @testset verbose = true "Code quality (Aqua.jl)" begin
+        Aqua.test_all(HashBlotto; ambiguities=false)
     end
-
-	@testset verbose = true "My own tests" begin
-		@test 1 + 1 == 2
-	end
+    @testset verbose = true "Code formatting (JuliaFormatter.jl)" begin
+        @test format(HashBlotto; verbose=true, overwrite=true)
+    end
+    @testset verbose = true "Doctests (Documenter.jl)" begin
+        doctest(HashBlotto)
+    end
 end
