@@ -17,30 +17,36 @@ was already built out for us, I definetly made it better as it is smarter in how
     it chooses paths than (https://github.com/gdalle/HashCode2014.jl/blob/main/src/random_walk.jl)
 
 """
-function greed(city::City = read_city())
+
+using HashCode2014
+city = read_city()
+function greed(city)
     (; total_duration, nb_cars, starting_junction, streets) = city
-    
     
     moves = Vector{Vector{Int}}(undef, nb_cars)
     visited = Dict{Int, Vector{Int}}()
 
+    print("number of cars, nb_cars", nb_cars)
+
     #setting up the number of cars we are looking allowedTime
     for c in 1:nb_cars
-        moves = [starting_junction]
+        print("car:", c)
+        move = [starting_junction]
         duration = 0
 
-        while duration < total_duration
-            current_junction = last(itinerary)
+        while duration < 10
+            current_junction = last(move)
 
             #taken from random_walk.jl on HashCode2014 
             #make it slightly better by encorporating the fact that we should never go back through 
             #the starting_junction 
+            # print(enumerate(streets[1:25]))
 
             street_candidates = [
                 (s, street) for (s, street) in enumerate(streets) if (
-                    is_street_start(current_junction, street) &&
-                    duration + street.duration <= total_duration &&
-                    (street.endpointB) != starting_junction
+                    HashCode2014.is_street_start(current_junction, street) &&
+                    duration + street.duration <= total_duration #&&
+                    # (street.endpointB) != starting_junction
                 )
             ]
 
@@ -51,15 +57,18 @@ function greed(city::City = read_city())
                 #greedy logic 
                 max_val = -10
                 #just look at the first one
-                max_street = street_candidates[0]
+                max_street = street_candidates[1]
+
+                println("street_candidates")
                 for (s, street) in street_candidates
                     val = street.distance / street.duration
+                    break
                     if val > max_val
                         #if hte stree has not been visited before then we update max val
-                        if street.endpointB ∉ visited
+                        if street.endpointB ∉ keys(visited)
                             max_val = val
                             max_street = street
-                        elseif street.endpointB in visited.keys()
+                        elseif street.endpointB in keys(visited)
                             #if the street has been visited before we will divide the 
                             #value in half
                             
@@ -73,7 +82,7 @@ function greed(city::City = read_city())
                 end
 
                 #update the streets, duration, and visited
-                push!(moves[c], max_street.endpointB)
+                push!(move[c], max_street.endpointB)
                 duration += max_street.duration
                 if max_street.endpointB in visited.keys()
                     visited[max_street.endpointB] += 1
@@ -81,10 +90,16 @@ function greed(city::City = read_city())
                     visited[max_street.endpointB] = 1
                 end
 
+                print("duration", duration)
+                println()
+                break
+
             end
 
         end
-        moves[c] = itinerary
+        moves[c] = move
     end
     return Solution(moves)
 end
+
+greed(city)
