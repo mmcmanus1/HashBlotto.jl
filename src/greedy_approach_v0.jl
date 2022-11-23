@@ -29,13 +29,9 @@ end
 
 function greedy(graph, start)
     """
-    A greedy single agent walk.
-    Input a graph, and a start node.
-    Continue until you run out of time by greedily choosing 
-    the untraversed adjacent edge with maximum distance.
-    If none-such exist: perform a random walk until encountering one, or until time runs out. 
+        A greedy single agent walk.
 
-
+    Input a graph, and a start node. Continue until you run out of time by greedily choosing the untraversed adjacent edge with maximum distance. If none-such exist: perform a random walk until encountering one, or until time runs out. 
     """
     dist = fill(Inf, nb_vertices(graph))  # here
     queue = [(start, 0)]
@@ -85,7 +81,6 @@ end
 Get the outneighbors of an edge and the corresponding distance u
 given a time constraint t.
 Returns the empty array if none are possible
-
 """
 
 function get_outneighbors_and_distances(g, junction, t, allowedTime)
