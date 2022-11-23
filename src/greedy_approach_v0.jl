@@ -1,4 +1,3 @@
-
 """
     get_edge_dictionary(city)
 
