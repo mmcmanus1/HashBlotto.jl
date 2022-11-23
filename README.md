@@ -9,4 +9,6 @@ HashBlotto
 A package that is build by the HashBlotto Team in C25. 
 The project is based on the Google HashCode 2014 competition.
 
+Challenge description: https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/hashcode2014_final_task.pdf
+
 Website: https://mmcmanus1.github.io/HashBlotto.jl/
