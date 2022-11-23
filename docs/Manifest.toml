@@ -66,7 +66,9 @@ uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[deps.HashBlotto]]
 deps = ["HashCode2014", "SparseArrays", "Test"]
-path = ".."
+git-tree-sha1 = "e9930372b4a962ef8bc0277746a24dee8049a765"
+repo-rev = "main"
+repo-url = "https://github.com/mmcmanus1/HashBlotto.jl"
 uuid = "16202f79-f0b3-4048-a0d2-7ecb0e04bfdb"
 version = "0.1.0"
 
