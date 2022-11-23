@@ -1,5 +1,6 @@
 """
     all_random(city)
+
 Function that returns the best random solution after 10 iterations 
 of the random solution and returns the best random solution of those 10.
 
