@@ -8,7 +8,6 @@ output: Dict(junctions .=> (possible_neighbor, duration, distance))=
 """
 
 function get_edge_dictionary(city)
-
     city_streets = city.streets
     edges = Dict()
     for edge in city_streets
@@ -69,7 +68,6 @@ function greedy(graph, start)
     return greedy_path
 end
 
-
 """
     get_unvisited(v, visited)
 
@@ -81,7 +79,6 @@ function get_unvisited(list, visited)
     x = filter(f, list)
     return x
 end
-
 
 """
     get_outneighbors_and_distances(graph, junction, time, allowedTime)
