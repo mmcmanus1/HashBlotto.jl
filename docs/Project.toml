@@ -1,3 +1,4 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
 HashBlotto = "16202f79-f0b3-4048-a0d2-7ecb0e04bfdb"
