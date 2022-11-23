@@ -1,8 +1,7 @@
 """
     all_random(city)
 
-Function that returns the best random solution after 10 iterations 
-of the random solution and returns the best random solution of those 10.
+Iterates through 10 random walks, and returning the best found
 """
 function all_random(city)
     #call the random walk function 100 times and return the best one

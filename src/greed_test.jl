@@ -4,6 +4,7 @@
 A greedy construction heuristic solution: Greedily maximize
 the distance/time ratio of the next junction. Reward is scaled down by 
 2 * repetitions of a street [if more than once] to discourage repeated edges
+
 ------------------------------------------------------------------------
 We improve on the prior work of the HashCode2014 package (https://github.com/gdalle/HashCode2014.jl)
 by designing and implementing a greedy heuristic
