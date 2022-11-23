@@ -73,9 +73,8 @@ end
 """
     get_outneighbors_and_distances(graph, junction, time, allowedTime)
 
-Get the outneighbors of an edge and the corresponding distance u
-given a time constraint t.
-Returns the empty array if none are possible
+Obtain the outneighbors of an edge and the corresponding distance, given a time constraint t.
+Returns the empty array if none
 """
 function get_outneighbors_and_distances(g, junction, t, allowedTime)
     # Dict(junctions .=> (possible_neighbor, duration, distance))
