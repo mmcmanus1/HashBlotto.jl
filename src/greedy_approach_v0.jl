@@ -29,7 +29,7 @@ end
 
 function greedy(graph, start)
     """
-        A greedy single agent walk.
+        greedy(graph, start)
 
     Input a graph, and a start node. Continue until you run out of time by greedily choosing the untraversed adjacent edge with maximum distance. If none-such exist: perform a random walk until encountering one, or until time runs out. 
     """
