@@ -11,7 +11,6 @@ Building off of the HashCode2014 package (https://github.com/gdalle/HashCode2014
 was already built out for us, I definetly made it better as it is smarter in how
 it chooses paths than (https://github.com/gdalle/HashCode2014.jl/blob/main/src/random_walk.jl)
 """
-
 function greed(city)
     (; total_duration, nb_cars, starting_junction, streets) = city
 

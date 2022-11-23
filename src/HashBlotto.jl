@@ -4,7 +4,6 @@
 A package that is build by the HashBlotto Team in C25. 
 The project is based on the Google HashCode 2014 competition.
 """
-
 module HashBlotto
 
 using HashCode2014

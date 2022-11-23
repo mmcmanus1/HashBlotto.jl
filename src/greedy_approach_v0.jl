@@ -5,7 +5,6 @@ A helper function that extracts a dictionary mapping adjacent edges. Particularl
 input: A city object
 output: Dict(junctions .=> (possible_neighbor, duration, distance))=
 """
-
 function get_edge_dictionary(city)
     city_streets = city.streets
     edges = Dict()
