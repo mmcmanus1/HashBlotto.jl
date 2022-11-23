@@ -1,8 +1,8 @@
 """
-
     HashBlotto 
 
-A package that is to be used for class C25  
+A package that is build by the HashBlotto Team in C25. 
+The project is based on the Google HashCode 2014 competition.
 """
 
 module HashBlotto

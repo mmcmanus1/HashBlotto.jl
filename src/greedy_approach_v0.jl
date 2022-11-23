@@ -1,10 +1,14 @@
 
+"""
+    get_edge_dictionary(city)
+
+A helper function that extracts a dictionary mapping adjacent edges. Particularly:
+input: A city object
+output: Dict(junctions .=> (possible_neighbor, duration, distance))=
+"""
+
 function get_edge_dictionary(city)
-    """
-    A helper function that extracts a dictionary mapping adjacent edges. Particularly:
-    input: A city object
-    output: Dict(junctions .=> (possible_neighbor, duration, distance))
-    """
+
     city_streets = city.streets
     edges = Dict()
     for edge in city_streets
@@ -65,7 +69,12 @@ function greedy(graph, start)
     return greedy_path
 end
 
-nb_vertices(edge_dict) = length(keys(edge_dict))
+
+"""
+    get_unvisited(v, visited)
+
+A helper function that returns the unvisited neighbors of a node.
+"""
 
 function get_unvisited(list, visited)
     f(x) = !(x in visited)
@@ -73,20 +82,17 @@ function get_unvisited(list, visited)
     return x
 end
 
-# function edge_weight(g::ListGraph, u, v)
-# 	for (x, y, w) in g.edges
-# 		if (x, y) == (u, v)
-# 			return w
-# 		end
-# 	end
-# end
+
+"""
+    get_outneighbors_and_distances(graph, junction, time, allowedTime)
+
+Get the outneighbors of an edge and the corresponding distance u
+given a time constraint t.
+Returns the empty array if none are possible
+
+"""
 
 function get_outneighbors_and_distances(g, junction, t, allowedTime)
-    """
-    Get the outneighbors of an edge and the corresponding distance u
-     given a time constraint t.
-    Returns the empty array if none are possible
-    """
     # Dict(junctions .=> (possible_neighbor, duration, distance))
     mapping = g[junction]
     zipped = [

@@ -1,6 +1,5 @@
 
 """
-
     greed(City)
 
 function that is greedy in it's approach to finding the best path,
