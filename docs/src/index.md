@@ -13,6 +13,3 @@ Documentation for [HashBlotto](https://github.com/mmcmanus1/HashBlotto.jl).
 all_random(city)
 ```
 
-```@autodocs
-Modules = [HashBlotto]
-```
