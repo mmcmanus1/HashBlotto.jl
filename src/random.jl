@@ -3,7 +3,6 @@
 
 Function that returns the best random solution after 10 iterations 
 of the random solution and returns the best random solution of those 10.
-
 """
 
 function all_random(city)
