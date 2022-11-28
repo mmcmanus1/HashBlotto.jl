@@ -6,7 +6,7 @@ Iterates through 10 random walks, returning the best found
 function all_random(city)
     #call the random walk function 100 times and return the best one
     best_distance = 0
-    best_sol = []
+    best_sol = Vector{Vector{Int}}(undef, 0)
 
     for i in 1:10
         #look at the total distance of a random walk

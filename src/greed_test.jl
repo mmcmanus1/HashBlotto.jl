@@ -16,7 +16,7 @@ function greed(city)
     moves = Vector{Vector{Int}}(undef, nb_cars)
     visited = Dict{Int,Vector{Int}}()
 
-    print("number of cars, nb_cars", nb_cars)
+    @debug "number of cars, nb_cars: $(nb_cars)"
 
     #setting up the number of cars we are looking allowedTime
     for c in 1:nb_cars
@@ -83,9 +83,9 @@ function greed(city)
 
                 #update the streets, duration, and visited
 
-                println("\n\n\n oanoisengoiwg", move)
-                println("duration", duration)
-                println("max_street", max_street)
+                # println("\n\n\n oanoisengoiwg", move)
+                # println("duration", duration)
+                # println("max_street", max_street)
                 push!(moves[c], node)
                 duration += max_street.duration
                 if max_street in keys(visited)
