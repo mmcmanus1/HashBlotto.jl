@@ -25,6 +25,7 @@ function greed(city)
         duration = 0
 
         while duration < 10
+            println("duration:", duration)
             current_junction = last(move)
 
             #taken from random_walk.jl on HashCode2014 
@@ -82,7 +83,9 @@ function greed(city)
 
                 #update the streets, duration, and visited
 
-                println("\n\n\n", move)
+                println("\n\n\n oanoisengoiwg", move)
+                println("duration", duration)
+                println("max_street", max_street)
                 push!(moves[c], node)
                 duration += max_street.duration
                 if max_street in keys(visited)

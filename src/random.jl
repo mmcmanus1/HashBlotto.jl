@@ -20,5 +20,5 @@ function all_random(city)
 
     # total_distance = HashCode2014.total_distance(random_walk)
 
-    return best_sol
+    return best_sol, best_distance
 end
