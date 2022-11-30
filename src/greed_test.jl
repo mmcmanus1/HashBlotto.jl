@@ -16,13 +16,14 @@ function greed(city)
     moves = Vector{Vector{Int}}(undef, nb_cars)
     visited = Dict{Int,Int}()
 
-
+    # @info "starting junction $starting_junction"
+    # @info "total duratoin $total_duration"
     #setting up the number of cars we are looking allowedTime
     for c in 1:nb_cars
         move = [starting_junction]
         duration = 0
 
-        while duration < 10
+        while duration <= total_duration
             current_junction = last(move)
 
             street_candidates = [
@@ -32,24 +33,32 @@ function greed(city)
                     # (street.endpointB) != starting_junction
                 )
             ]
+            # @info "street candidates $street_candidates"
             #check to make sure we have a street to go to
             if isempty(street_candidates)
+                # @info "no street candidates"
                 break
             else
-                
                 #get the max 
                 max_junction = get_best_street(street_candidates, visited)
                 max_index = max_junction[1]
                 max_street = max_junction[2]
-                duration += max_street.duration
+                # @info "max index $max_index"
+                starting_node = max_street.endpointA
+                ending_node = max_street.endpointB
+                # @info "starting node $starting_node"
+                # @info "ending node $ending_node"
 
-                if max_junction in keys(visited)
+
+                duration += max_street.duration
+                # @info "duration $duration, max street $total_duration"
+                push!(move, ending_node)
+
+                if max_index in keys(visited)
                     visited[max_index] += 1
                 else
                     visited[max_index] = 1
                 end
-
-                
             end
         end
         moves[c] = move
@@ -91,6 +100,7 @@ Returns the value of the current junction
         street = current_junction[2]
         val = street.distance / street.duration
         if current_junction in keys(visited)
+            #implement a better penalty system
             return val / (2 * visited[current_junction])
         else
             return val
