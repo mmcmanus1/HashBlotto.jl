@@ -13,8 +13,8 @@ by designing and implementing a greedy heuristic
 function greed(city)
     (; total_duration, nb_cars, starting_junction, streets) = city
 
-    moves = Vector{Int}(undef, nb_cars)
-    visited = Dict{Street,Int}()
+    moves = Vector{Vector{Int}}(undef, nb_cars)
+    visited = Dict{Int,Int}()
 
 
     #setting up the number of cars we are looking allowedTime
@@ -23,13 +23,7 @@ function greed(city)
         duration = 0
 
         while duration < 10
-            println("duration:", duration)
             current_junction = last(move)
-
-            #taken from random_walk.jl on HashCode2014 
-            #make it slightly better by encorporating the fact that we should never go back through 
-            #the starting_junction 
-            # print(enumerate(streets[1:25]))
 
             street_candidates = [
                 (s, street) for (s, street) in enumerate(streets) if (
@@ -42,61 +36,63 @@ function greed(city)
             if isempty(street_candidates)
                 break
             else
-                #greedy logic 
-                max_val = -10
-                #just look at the first one
-                max_street = street_candidates[1]
-                println("indexxxxxxxxxxxxx ", street_candidates)
-                println()
-                # println("street_candidates")
-                for (s, street) in street_candidates
-                    val = street.distance / street.duration
-                    break
-                    if val > max_val
-                        #if hte stree has not been visited before then we update max val
-                        if street.endpointB ∉ keys(visited)
-                            max_val = val
-                            max_street = street
-                        elseif street.endpointB in keys(visited)
-                            #if the street has been visited before we will divide the 
-                            #value in half
-
-                            if val / (2 * visited[street.endpointB]) > max_val
-                                max_val = val / (2 * visited[street.endpointB])
-                                max_street = street
-                            end
-                        end
-                    end
-                end
-                println(max_street)
-                max_street = max_street[2]
-
-                if current_junction == max_street.endpointA
-                    node = max_street.endpointB
-                else
-                    node = max_street.endpointA
-                end
-
-                #update the streets, duration, and visited
-
-                # println("\n\n\n oanoisengoiwg", move)
-                # println("duration", duration)
-                # println("max_street", max_street)
-                push!(moves, node)
+                
+                #get the max 
+                max_junction = get_best_street(street_candidates, visited)
+                max_index = max_junction[1]
+                max_street = max_junction[2]
                 duration += max_street.duration
-                print("\n\n\n", max_street, visited, "\n\n\n")
-                if max_street in keys(visited)
-                    visited[max_street] += 1
+
+                if max_junction in keys(visited)
+                    visited[max_index] += 1
                 else
-                    visited[max_street] = 1
+                    visited[max_index] = 1
                 end
 
-                print("duration", duration)
-                println()
-                break
+                
             end
         end
         moves[c] = move
     end
     return Solution(moves)
 end
+
+
+"""
+    get_best_street(current_junction, street_candidates, visited)
+
+Returns the best street that the google maps car can go to.
+
+"""
+
+function get_best_street(street_candidates, visited)
+    max_junction = street_candidates[1]
+    max_val = -10
+
+    for next_junction in street_candidates
+        #get the max_value that we can have
+        value = get_value(next_junction, visited)
+
+        if value > max_val
+            max_val = value
+            max_junction = next_junction
+        end
+    end
+
+    return max_junction
+end
+
+"""
+    get_value (current_junction, visited)
+
+Returns the value of the current junction
+"""
+    function get_value(current_junction, visited)
+        street = current_junction[2]
+        val = street.distance / street.duration
+        if current_junction in keys(visited)
+            return val / (2 * visited[current_junction])
+        else
+            return val
+        end
+    end

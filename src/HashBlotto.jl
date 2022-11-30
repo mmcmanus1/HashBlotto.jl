@@ -10,13 +10,14 @@ using HashCode2014
 using SparseArrays
 
 export greed
-export get_edge_dictionary, greedy, get_unvisited, get_outneighbors_and_distances
 export all_random
-export best_sol_output
+export get_best_street
+export get_value
+
 
 include("greed_test.jl")
-include("greedy_approach_v0.jl")
 include("random.jl")
-include("output.jl")
+
+
 
 end
