@@ -10,9 +10,7 @@ Generates a .txt file using the pr
 
 """
 
-
-function best_sol_ouptut(solution::Solution)
-    
+function best_sol_output(solution::Solution)
     path = pwd() * "/output.txt"
 
     open(path, "w") do f

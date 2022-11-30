@@ -3,6 +3,7 @@ using Documenter
 using HashBlotto
 using JuliaFormatter
 using Test
+using HashCode2014
 
 DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=true)
 
@@ -15,5 +16,8 @@ DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=tr
     end
     @testset verbose = true "Doctests (Documenter.jl)" begin
         doctest(HashBlotto)
+    end
+    @testset verbose = true "A" begin
+        include("a-test.jl")
     end
 end

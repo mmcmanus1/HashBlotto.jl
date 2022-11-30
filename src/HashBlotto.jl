@@ -12,13 +12,11 @@ using SparseArrays
 export greed
 export get_edge_dictionary, greedy, get_unvisited, get_outneighbors_and_distances
 export all_random
-export best_sol_ouptut
-
+export best_sol_output
 
 include("greed_test.jl")
 include("greedy_approach_v0.jl")
 include("random.jl")
 include("output.jl")
-
 
 end
