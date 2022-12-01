@@ -10,7 +10,7 @@ We improve on the prior work of the HashCode2014 package (https://github.com/gda
 by designing and implementing a greedy heuristic
 (https://github.com/gdalle/HashCode2014.jl/blob/main/src/random_walk.jl)
 """
-function greed(city)
+function greed(city , penalty)
     (; total_duration, nb_cars, starting_junction, streets) = city
 
     moves = Vector{Vector{Int}}(undef, nb_cars)
@@ -21,9 +21,9 @@ function greed(city)
     #setting up the number of cars we are looking allowedTime
     for c in 1:nb_cars
         move = [starting_junction]
-        duration = 0
+        rem_time = total_duration
 
-        while duration <= total_duration
+        while rem_time <= 0
             current_junction = last(move)
 
             street_candidates = [
@@ -40,7 +40,7 @@ function greed(city)
                 break
             else
                 #get the max 
-                max_junction = get_best_street(street_candidates, visited)
+                max_junction = get_best_street(street_candidates, visited, penalty)
                 max_index = max_junction[1]
                 max_street = max_junction[2]
                 # @info "max index $max_index"
@@ -54,10 +54,11 @@ function greed(city)
                 # @info "duration $duration, max street $total_duration"
                 push!(move, ending_node)
 
-                if max_index in keys(visited)
-                    visited[max_index] += 1
+                if ending_node in keys(visited)
+                    visited[ending_node] += 1
+                    # @info "visited $visited"
                 else
-                    visited[max_index] = 1
+                    visited[ending_node] = 1
                 end
             end
         end
@@ -74,14 +75,14 @@ Returns the best street that the google maps car can go to.
 
 """
 
-function get_best_street(street_candidates, visited)
+function get_best_street(street_candidates, visited, penalty)
     max_junction = street_candidates[1]
     max_val = -10
 
     for next_junction in street_candidates
         #get the max_value that we can have
-        value = get_value(next_junction, visited)
-
+        value = get_value(next_junction, visited, penalty)
+        # @info "value $value"
         if value > max_val
             max_val = value
             max_junction = next_junction
@@ -96,13 +97,47 @@ end
 
 Returns the value of the current junction
 """
-    function get_value(current_junction, visited)
+    function get_value(current_junction, visited, penalty)
         street = current_junction[2]
         val = street.distance / street.duration
-        if current_junction in keys(visited)
+        node = street.endpointB
+
+        if node in keys(visited)
             #implement a better penalty system
-            return val / (2 * visited[current_junction])
+            num =  visited[node]
+            # @info "mulitplier $num"
+            return val * penalty *  visited[node]
         else
             return val
         end
     end
+
+
+"""
+    Distributions(city, min, max, step)
+
+Shows the distributions of the distances of the city at different penalty values
+"""
+
+function Distributions(city, min, max, step)
+    best_distance = 0
+    best_penalty = 0
+
+    
+    penalty = min
+    while penalty <= max
+        solution = greed(city, penalty = penalty)
+        distance = total_distance(solution, city)
+
+        if distance > best_distance
+            best_distance = distance
+            best_penalty = penalty
+        end
+
+        @info "Penalty: $penalty, Distance: $distance"
+        penalty += step
+    end
+
+    return best_penalty, best_distance
+end
+ 

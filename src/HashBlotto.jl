@@ -13,10 +13,11 @@ export greed
 export all_random
 export get_best_street
 export get_value
-
+export Distributions
 
 include("greed_test.jl")
 include("random.jl")
+
 
 
 
