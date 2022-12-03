@@ -12,9 +12,9 @@ same_time_streets = Street[
     Street(1, 2, false, d₁, d₂), Street(1, 3, false, d₁, d₂), Street(2, 3, true, d₁, d₂)
 ]
 varying_streets = Street[
-    Street(1, 2, false, (1 + 2)d₁, (1 + 2)d₂),
-    Street(1, 3, false, (1 + 3)d₁, (1 + 3)d₂),
-    Street(2, 3, true, (2 + 3)d₁, (2 + 3)d₂),
+    Street(1, 2, false, (1 + 2)d₁, (1 + 2)^2 * d₂),
+    Street(1, 3, false, (1 + 3)d₁, (1 + 3)^2 * d₂),
+    Street(2, 3, true, (2 + 3)d₁, (2 + 3)^2 * d₂),
 ]
 
 """
@@ -42,7 +42,7 @@ function time_varying_graph_test()
     city = City(total_duration, nb_cars, starting_junction, junctions, varying_streets)
     graph = graph_structure(city)
     sol₂ = Dict{Int64,Vector{Tuple{Int64,Int64,Float16}}}(
-        1 => [(2, 30, 2.0), (3, 40, 2.0)], 2 => [(3, 50, 2.0)], 3 => [(2, 50, 2.0)]
+        1 => [(2, 30, 6.0), (3, 40, 8.0)], 2 => [(3, 50, 10.0)], 3 => [(2, 50, 10.0)]
     )
     return graph == sol₂
 end

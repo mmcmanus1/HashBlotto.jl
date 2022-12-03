@@ -38,7 +38,6 @@ Tests that forward and reverse duration of street_structure are implemented corr
 function time_varying_street_test()
     city = City(total_duration, nb_cars, starting_junction, junctions, varying_streets)
     graph = street_structure(city)
-    print(graph)
     sol₂ = Dict{Tuple{Int64,Int64},Float16}(
         (1, 2) => 30.0, (1, 3) => 40.0, (2, 3) => 50.0, (3, 2) => 50.0
     )
