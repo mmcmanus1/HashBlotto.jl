@@ -1,10 +1,9 @@
 """
     all_random(city)
 
-Iterates through 10 random walks, returning the best found
+Iterates through 10 random walks, returning the best found solution
 """
 function all_random(city)
-    #call the random walk function 100 times and return the best one
     best_distance = 0
     best_sol = Vector{Vector{Int}}(undef, 0)
 
@@ -17,8 +16,6 @@ function all_random(city)
             best_sol = random_sol
         end
     end
-
-    # total_distance = HashCode2014.total_distance(random_walk)
 
     return best_sol, best_distance
 end

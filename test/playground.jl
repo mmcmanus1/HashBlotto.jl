@@ -4,18 +4,19 @@ using HashBlotto
 city = read_city()
 graph = graph_structure(city)
 
-@time solution = greed(city, penalty = .1)
-# @profview solution = greed(city, penalty = .1)
-# @time greed(city, penalty = .1))
-# println(solution)
-
-
-# solution = greed(city, penalty = .1)
+@time solution = greed(city, penalty = .3)
 distance = total_distance(solution, city)
 
-# monte = MonteCarlo(city)
+# best_penalty, best_distance = Distributions(city, 0, 1, .05)
+#look at all the streets
+@time streets = street_structure(city)
 
-# best_penalty, best_distance = Distributions(city, 0, 1, .01)
+sorted_edges = kruskal(graph, streets)
 
+@info "sorted_edges $sorted_edges"
 
-#look at the current structure and 
+# for edge in sorted_edges
+#     value = streets[edge]
+#     @info "value $value"
+#     @info "\n"
+# end
