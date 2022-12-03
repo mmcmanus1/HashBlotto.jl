@@ -50,11 +50,7 @@ The values are a tuple of the duration and value of the street
 
 function street_structure(city::City)
     #adj_graph = {(start_node_index, end_node_index): (duration, distance/duration )}
-<<<<<<< HEAD
-    adj_graph = Dict{Tuple{Int64,Int64},Float32}()
-=======
     adj_graph = Dict{Tuple{Int64, Int64}, Float16}()
->>>>>>> 4f7b8f2b83e796ce174a1a7add6f467c17fe4845
 
     for (index, street) in enumerate(city.streets)
         A = street.endpointA
@@ -63,13 +59,8 @@ function street_structure(city::City)
         #data that we want to keep track of is just:
         length = street.distance
         duration = street.duration
-<<<<<<< HEAD
-        value = length / duration
-        data = value
-=======
         value = length/duration
         data = duration
->>>>>>> 4f7b8f2b83e796ce174a1a7add6f467c17fe4845
 
         #adj_graph information
         adj_graph[(A, B)] = data
@@ -135,13 +126,7 @@ function kruskal(graph, street_structure)
     #just sort the graphs byt he weights 
 
     #sort the edges by the value
-<<<<<<< HEAD
-    sorted_edges = sort(
-        collect(keys(street_structure)); by=x -> street_structure[x], rev=true
-    )
-=======
     sorted_edges = sort(collect(keys(street_structure)), by = x -> street_structure[x], rev = false)
->>>>>>> 4f7b8f2b83e796ce174a1a7add6f467c17fe4845
     #get the values of the sorted edges
 
     sorted_edge_indexs = Dict{Int,Tuple{Int,Int}}()
@@ -162,13 +147,8 @@ function kruskal(graph, street_structure)
 
     #number of edges to be taken is equal to vertices - 1
     while e < length(graph) - 1
-<<<<<<< HEAD
-        next_edge = getindex(sorted_edge_indexs, e + 1)
-
-=======
         
         next_edge = getindex(sorted_edge_indexs, e+1)
->>>>>>> 4f7b8f2b83e796ce174a1a7add6f467c17fe4845
         e += 1
 
         x = next_edge[1]

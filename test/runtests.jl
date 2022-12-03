@@ -11,9 +11,9 @@ DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=tr
     # @testset verbose = true "Code quality (Aqua.jl)" begin
     #     Aqua.test_all(HashBlotto; ambiguities=false)
     # end
-    # @testset verbose = true "Code formatting (JuliaFormatter.jl)" begin
-    #     @test format(HashBlotto; verbose=true, overwrite=true)
-    # end
+    @testset verbose = true "Code formatting (JuliaFormatter.jl)" begin
+        @test format(HashBlotto; verbose=true, overwrite=true)
+    end
     # @testset verbose = true "Doctests (Documenter.jl)" begin
     #     doctest(HashBlotto)
     # end
