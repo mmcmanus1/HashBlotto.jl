@@ -16,6 +16,7 @@ function greed(city; penalty=1)
     moves = Vector{Vector{Int}}(undef, nb_cars)
     visited = Dict{Int,Int}()
     graph = graph_structure(city)
+    # kruskal_result, minimumCost = kruskal(graph, streets)
 
     # @info "starting junction $starting_junction"
     # @info "total duratoin $total_duration"
