@@ -14,9 +14,3 @@ distance = total_distance(solution, city)
 sorted_edges = kruskal(graph, streets)
 
 @info "sorted_edges $sorted_edges"
-
-# for edge in sorted_edges
-#     value = streets[edge]
-#     @info "value $value"
-#     @info "\n"
-# end
