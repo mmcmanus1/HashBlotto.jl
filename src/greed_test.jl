@@ -10,7 +10,7 @@ We improve on the prior work of the HashCode2014 package (https://github.com/gda
 by designing and implementing a greedy heuristic
 (https://github.com/gdalle/HashCode2014.jl/blob/main/src/random_walk.jl)
 """
-function greed(city ; penalty = 1)
+function greed(city; penalty=1)
     (; total_duration, nb_cars, starting_junction, streets) = city
 
     moves = Vector{Vector{Int}}(undef, nb_cars)
@@ -29,14 +29,12 @@ function greed(city ; penalty = 1)
             last_node = current_junction[1]
             street_candidates = graph[last_node]
 
-
             # @info "street candidates $street_candidates"
             #check to make sure we have a street to go to
             if length(street_candidates) == 0
                 break
             else
                 max_junction = get_best_street(graph, street_candidates, visited, penalty)
-
 
                 duration += max_junction[2]
                 push!(move, max_junction[1])
@@ -53,19 +51,16 @@ function greed(city ; penalty = 1)
     return Solution(moves)
 end
 
-
-
 """
     get_best_street(current_junction, street_candidates, visited)
 
 Returns the best street that the google maps car can go to. 
 """
-function get_best_street(graph, street_candidates, visited, penalty = 1)
+function get_best_street(graph, street_candidates, visited, penalty=1)
     max_node = street_candidates[1]
     max_val = -10
 
     for next_node in street_candidates
-
         value = get_value(graph, next_node, visited, penalty)
         if value > max_val
             max_val = value
@@ -85,20 +80,19 @@ The current reward system acting under the reward equation:
 val * penalty ^ visited[node] + (penalty) * adjacent_reward
 
 """
-    function get_value(graph, next_node, visited, penalty)
-        node = next_node[1]
-        val = next_node[3]
-        
-        if next_node[1] in keys(visited)
-            adjacent_reward = adj_reward(graph, next_node, visited)
-            # @info "adjacent reward $adjacent_reward"
+function get_value(graph, next_node, visited, penalty)
+    node = next_node[1]
+    val = next_node[3]
 
-            return val * penalty ^ visited[node] + (penalty) * adjacent_reward
-        else
-            return val
-        end
+    if next_node[1] in keys(visited)
+        adjacent_reward = adj_reward(graph, next_node, visited)
+        # @info "adjacent reward $adjacent_reward"
+
+        return val * penalty^visited[node] + (penalty) * adjacent_reward
+    else
+        return val
     end
-
+end
 
 """
     Distributions(city, min, max, step)
@@ -109,10 +103,9 @@ function Distributions(city, min, max, step)
     best_distance = 0
     best_penalty = 0
 
-    
     penalty = min
     while penalty <= max
-        solution = greed(city, penalty = penalty)
+        solution = greed(city; penalty=penalty)
         distance = total_distance(solution, city)
 
         if distance > best_distance

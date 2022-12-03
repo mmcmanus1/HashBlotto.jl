@@ -6,7 +6,7 @@ The keys of the dictionary will hold the the index of the vertice
 The values of the dictionary will be a list of tuples of (next_node_index, distance, duration, distance/duration)
 
 """
-function graph_structure(city::City)    
+function graph_structure(city::City)
     #adj_list = {start_node_index: [(end_node_index, duration, distance/duration)]}
     adj_list = Dict{Int,Vector{Tuple{Int,Int,Float16}}}()
 
@@ -17,7 +17,7 @@ function graph_structure(city::City)
         #data that we want to keep track of is just:
         length = street.distance
         duration = street.duration
-        value = length/duration
+        value = length / duration
         data = (B, duration, value)
 
         #adj_list information:
@@ -50,7 +50,7 @@ The values are a tuple of the duration and value of the street
 
 function street_structure(city::City)
     #adj_graph = {(start_node_index, end_node_index): (duration, distance/duration )}
-    adj_graph = Dict{Tuple{Int64, Int64}, Float32}()
+    adj_graph = Dict{Tuple{Int64,Int64},Float32}()
 
     for (index, street) in enumerate(city.streets)
         A = street.endpointA
@@ -59,16 +59,15 @@ function street_structure(city::City)
         #data that we want to keep track of is just:
         length = street.distance
         duration = street.duration
-        value = length/duration
+        value = length / duration
         data = value
 
-
         #adj_graph information
-        adj_graph[(A,B)] = data
+        adj_graph[(A, B)] = data
 
         #check bidirectional
         if street.bidirectional
-            adj_graph[(B,A)] = data
+            adj_graph[(B, A)] = data
         end
     end
 
@@ -91,8 +90,7 @@ output: a dictoinary of node_index to adj_reward
 function adj_reward(graph, next_node, visited)
     max_reward = 0
     max_node = next_node[1]
-       
-    
+
     for n_adj_junction in graph[max_node]
         n_adj_node = n_adj_junction[1]
 
@@ -104,11 +102,9 @@ function adj_reward(graph, next_node, visited)
             max_node = n_adj_node
         end
     end
-    
-    return max_reward/length(graph[max_node])
+
+    return max_reward / length(graph[max_node])
 end
-
-
 
 """
     kruskal(graph::Graph)
@@ -123,23 +119,24 @@ function kruskal(graph, street_structure)
     We will use a disjoint set to keep track of the connected components.
     """
     #result = [(start_node, end_node, value)]
-    result = Vector{Tuple{Int, Int, Float32}}()
+    result = Vector{Tuple{Int,Int,Float32}}()
 
     i = 0 #index for result
     e = 0 #index for edges
     #just sort the graphs byt he weights 
-    
+
     #sort the edges by the value
-    sorted_edges = sort(collect(keys(street_structure)), by = x -> street_structure[x], rev = true)
+    sorted_edges = sort(
+        collect(keys(street_structure)); by=x -> street_structure[x], rev=true
+    )
     #get the values of the sorted edges
 
-    sorted_edge_indexs  = Dict{Int, Tuple{Int, Int}}()
+    sorted_edge_indexs = Dict{Int,Tuple{Int,Int}}()
 
     #each start and end vertex will have 
     for (index, edge) in enumerate(sorted_edges)
         sorted_edge_indexs[index] = edge
     end
-
 
     parent = Vector{Int}(undef, length(graph))
     rank = Vector{Int}(undef, length(graph))
@@ -152,8 +149,7 @@ function kruskal(graph, street_structure)
 
     #number of edges to be taken is equal to vertices - 1
     while e < length(graph) - 1
-        
-        next_edge = getindex(sorted_edge_indexs, e+1)
+        next_edge = getindex(sorted_edge_indexs, e + 1)
 
         e += 1
 
@@ -167,7 +163,6 @@ function kruskal(graph, street_structure)
 
             i += 1
             union(parent, rank, x, y)
-
         end
     end
 
@@ -177,6 +172,4 @@ function kruskal(graph, street_structure)
     end
 
     return result, minimumCost
-
 end
-

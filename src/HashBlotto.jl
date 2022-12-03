@@ -16,8 +16,6 @@ export get_value
 export Distributions
 export graph_structure, street_structure, adj_reward, kruskal
 
-
-
 include("greed_test.jl")
 include("random.jl")
 include("graph.jl")
