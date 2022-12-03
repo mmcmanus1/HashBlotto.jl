@@ -15,12 +15,12 @@ varying_streets = Street[
 ]
 
 """
-    bidirectionality_test(city::City)
+    street_bidirectionality_test(city::City)
 
 Tests forward and reverse directionality of street_structure is implemented correctly
 """
 
-function bidirectionality_test()
+function street_bidirectionality_test()
     city = City(total_duration, nb_cars, starting_junction, junctions, same_time_streets)
     graph = street_structure(city)
     sol₁ = Dict{Tuple{Int64,Int64},Float16}(
@@ -30,12 +30,12 @@ function bidirectionality_test()
 end
 
 """
-    time_varying_graph_test(city::City)
+    time_varying_street_test(city::City)
 
 Tests that forward and reverse duration of street_structure are implemented correctly
 """
 
-function time_varying_graph_test()
+function time_varying_street_test()
     city = City(total_duration, nb_cars, starting_junction, junctions, varying_streets)
     graph = street_structure(city)
     print(graph)
@@ -45,5 +45,5 @@ function time_varying_graph_test()
     return graph == sol₂
 end
 
-@test bidirectionality_test()
-@test time_varying_graph_test()
+@test street_bidirectionality_test()
+@test time_varying_street_test()
