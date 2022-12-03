@@ -50,7 +50,7 @@ The values are a tuple of the duration and value of the street
 """
 
 function street_structure(city::City)
-    #adj_graph = {(start_node_index, end_node_index): (duration, distance/duration )}
+    #adj_graph = {(start_node_index, end_node_index): duration}
     adj_graph = Dict{Tuple{Int64,Int64},Float16}()
 
     for (index, street) in enumerate(city.streets)
@@ -60,8 +60,7 @@ function street_structure(city::City)
         #data that we want to keep track of is just:
         length = street.distance
         duration = street.duration
-        value = length / duration
-        data = duration
+        data = duration # Hey Matt, you never actually made the tuple, so edited docstring
 
         #adj_graph information
         adj_graph[(A, B)] = data
@@ -85,7 +84,7 @@ The value will be calculated by:
 +1 for node not visited
 0 for node visited
 
-output: a dictoinary of node_index to adj_reward
+output: a dictionary of node_index to adj_reward
 """
 
 function adj_reward(graph, next_node, visited)

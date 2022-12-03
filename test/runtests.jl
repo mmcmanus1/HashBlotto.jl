@@ -18,6 +18,9 @@ DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=tr
         doctest(HashBlotto)
     end
     @testset verbose = true "Graph structure tests" begin
-        include("graph_structure-test.jl")
+        include("graph-structure-test.jl")
+    end
+    @testset verbose = true "Graph structure tests" begin
+        include("street-structure-test.jl")
     end
 end
