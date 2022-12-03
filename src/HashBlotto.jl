@@ -14,8 +14,9 @@ export all_random
 export get_best_street
 export get_value
 export Distributions
-export graph_structure
-export adj_reward
+export graph_structure, street_structure, adj_reward, kruskal
+
+
 
 include("greed_test.jl")
 include("random.jl")

@@ -36,19 +36,15 @@ function greed(city ; penalty = 1)
                 break
             else
                 max_junction = get_best_street(graph, street_candidates, visited, penalty)
-            
-                max_index = max_junction[1]
-                max_duration = max_junction[2]
 
-                duration += max_duration
-                # @info "duration $duration, max street $total_duration"
-                push!(move, max_index)
 
-                if max_index in keys(visited)
-                    visited[max_index] += 1
-                    # @info "visited $visited"
+                duration += max_junction[2]
+                push!(move, max_junction[1])
+
+                if max_junction[1] in keys(visited)
+                    visited[max_junction[1]] += 1
                 else
-                    visited[max_index] = 1
+                    visited[max_junction[1]] = 1
                 end
             end
         end
@@ -58,13 +54,12 @@ function greed(city ; penalty = 1)
 end
 
 
+
 """
     get_best_street(current_junction, street_candidates, visited)
 
-Returns the best street that the google maps car can go to.
-
+Returns the best street that the google maps car can go to. 
 """
-
 function get_best_street(graph, street_candidates, visited, penalty = 1)
     max_node = street_candidates[1]
     max_val = -10
@@ -72,7 +67,6 @@ function get_best_street(graph, street_candidates, visited, penalty = 1)
     for next_node in street_candidates
 
         value = get_value(graph, next_node, visited, penalty)
-        # @info "value $value"
         if value > max_val
             max_val = value
             max_node = next_node
@@ -85,7 +79,11 @@ end
 """
     get_value (current_junction, visited)
 
-Returns the value of the current junction
+Returns the value of the current junction. 
+The current reward system acting under the reward equation:
+
+val * penalty ^ visited[node] + (penalty) * adjacent_reward
+
 """
     function get_value(graph, next_node, visited, penalty)
         node = next_node[1]
