@@ -49,5 +49,3 @@ end
 
 @test bidirectionality_test()
 @test time_varying_graph_test()
-
-# All other A tests
