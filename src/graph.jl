@@ -18,21 +18,22 @@ function graph_structure(city::City)
         length = street.distance
         duration = street.duration
         value = length / duration
-        data = (B, duration, value)
+        forward_data = (B, duration, value)
+        reverse_data = (A, duration, value)
 
         #adj_list information:
         if A in keys(adj_list)
-            push!(adj_list[A], data)
+            push!(adj_list[A], forward_data)
         else
-            adj_list[A] = [data]
+            adj_list[A] = [forward_data]
         end
 
         #check the bidirectionality 
         if street.bidirectional
             if B in keys(adj_list)
-                push!(adj_list[B], data)
+                push!(adj_list[B], reverse_data)
             else
-                adj_list[B] = [data]
+                adj_list[B] = [reverse_data]
             end
         end
     end
