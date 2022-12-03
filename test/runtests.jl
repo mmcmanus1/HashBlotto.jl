@@ -20,7 +20,7 @@ DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=tr
     @testset verbose = true "Graph structure tests" begin
         include("graph-structure-test.jl")
     end
-    @testset verbose = true "Graph structure tests" begin
+    @testset verbose = true "Street structure tests" begin
         include("street-structure-test.jl")
     end
 end
