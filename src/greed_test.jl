@@ -36,9 +36,15 @@ function greed(city; penalty=1)
                 break
             else
                 max_junction = get_best_street(graph, street_candidates, visited, penalty)
+                # @info "max junction $max_junction"
+                if duration + max_junction[2] > total_duration
+                    break
+                else
+                    duration += max_junction[2]
+                    push!(move, max_junction[1])
+                    # @info "move $move"
+                end
 
-                duration += max_junction[2]
-                push!(move, max_junction[1])
 
                 if max_junction[1] in keys(visited)
                     visited[max_junction[1]] += 1
@@ -89,7 +95,7 @@ function get_value(graph, next_node, visited, penalty)
         adjacent_reward = adj_reward(graph, next_node, visited)
         # @info "adjacent reward $adjacent_reward"
 
-        return val * penalty^visited[node] + (penalty) * adjacent_reward
+        return val * penalty^visited[node]
     else
         return val
     end
