@@ -1,46 +1,44 @@
 """
     greed(City)
 
-Greedily construct a solution to the HashCode Challenge given a `City`
-Maximizing the distance/time ratio of the next junction. Reward is scaled down by 
-2 * repetitions of a street [if more than once] to discourage repeated edges
+Generates a Greedy Solution to the HashCode Challenge
+The overall logic is below:
+    - At every junction look at the adjacent streets and look at their value (duration/distance)
+    - If a street has been visited before, we penalize it by making a new value equal: value * (penalty = 0.01 ^ # of times visited)
 
-------------------------------------------------------------------------
-We improve on the prior work of the HashCode2014 package (https://github.com/gdalle/HashCode2014.jl)
-by designing and implementing a greedy heuristic
-(https://github.com/gdalle/HashCode2014.jl/blob/main/src/random_walk.jl)
+Each car is sent out one at a time and the car will continue to move until it reaches the end of the time limit or it reaches a dead end.
+At that point the next car will start or the solution will be returned.
 """
-function greed(city; penalty=1)
+function greed(city; penalty=0.01)
     (; total_duration, nb_cars, starting_junction, streets) = city
 
     moves = Vector{Vector{Int}}(undef, nb_cars)
     visited = Dict{Int,Int}()
     graph = graph_structure(city)
 
-    # setting up the number of cars we are looking cars
     for car in 1:nb_cars
         move = [starting_junction]
         duration = 0
 
-        # Ensure within AllowedTime
+        # Ensures within AllowedTime
         while duration <= total_duration
             current_junction = last(move)
             last_node = current_junction[1]
             street_candidates = graph[last_node]
-            # @info "street candidates $street_candidates"
 
-            # check to make sure we have a street to go to
+            # check to make sure we have not reached a dead end
             if length(street_candidates) == 0
                 break
             else
+                #returns the best possible street to go to according to our greedy heuristic
                 max_junction = get_best_street(street_candidates, visited, penalty)
-                # @info "max junction $max_junction"
+                
+                #ensures we do not go over the time limit
                 if duration + max_junction[2] > total_duration
                     break
                 else
                     duration += max_junction[2]
                     push!(move, max_junction[1])
-                    # @info "move $move"
                 end
 
                 # Increment the visited counter
@@ -59,21 +57,21 @@ end
 """
     get_best_street(current_junction, street_candidates, visited)
 
-Returns the ``best'' adjacent street based on our greedy heuristic from get_junction_value
+Returns the "best" adjacent junction based on our greedy heuristic from get_junction_value
 """
-function get_best_street(street_candidates, visited, penalty=1)
-    max_node = street_candidates[1]
-    max_val = -10
+function get_best_street(street_candidates, visited, penalty=0.01)
+    max_junction = street_candidates[1]
+    max_val = -1
 
-    for next_node in street_candidates
-        value = get_junction_value(next_node, visited, penalty)
+    for next_junction in street_candidates
+        value = get_junction_value(next_junction, visited, penalty)
         if value > max_val
             max_val = value
-            max_node = next_node
+            max_junction = next_junction
         end
     end
 
-    return max_node
+    return max_junction
 end
 
 """
@@ -85,41 +83,13 @@ The current reward system acting under the reward equation:
 val * penalty ^ visited[node] 
 
 """
-function get_junction_value(next_node, visited, penalty)
-    node = next_node[1]
-    val = next_node[3]
+function get_junction_value(next_junction, visited, penalty)
+    node = next_junction[1]
+    val = next_junction[3]
 
     if node in keys(visited)
-        # adjacent_reward = adj_reward(graph, next_node, visited) #+ (penalty) * adjacent_reward
-        # @info "adjacent reward $adjacent_reward"
-
-        return val * penalty^visited[node]
+        return val * penalty^visited[node] 
     else
-        return val
+        return val 
     end
-end
-
-"""
-    Distributions(city, min, max, step)
-
-Shows the distributions of the distances of the city at different penalty values
-"""
-function Distributions(city, min, max, step)
-    best_distance = 0
-    best_penalty = 0
-
-    penalty = min
-    while penalty <= max
-        solution = greed(city; penalty=penalty)
-        distance = total_distance(solution, city)
-
-        if distance > best_distance
-            best_distance = distance
-            best_penalty = penalty
-        end
-        @info "Penalty: $penalty, Distance: $distance"
-        penalty += step
-    end
-
-    return best_penalty, best_distance
 end

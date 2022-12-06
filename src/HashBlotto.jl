@@ -9,15 +9,15 @@ module HashBlotto
 using HashCode2014
 using SparseArrays
 
-export greed
-export all_random
-export get_best_street
-export get_value
-export Distributions
+export greed, get_best_street, get_junction_value
 export graph_structure, street_structure, adj_reward, kruskal
 
+export get_best_street
+export get_value
+export distributions
+
 include("greed_test.jl")
-include("random.jl")
 include("graph.jl")
+include("util.jl")
 
 end
