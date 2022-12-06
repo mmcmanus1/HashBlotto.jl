@@ -12,12 +12,9 @@ using SparseArrays
 export greed, get_best_street, get_junction_value
 export graph_structure, street_structure, adj_reward, kruskal
 
-export get_best_street
-export get_value
-export distributions
 
 include("greed_test.jl")
 include("graph.jl")
-include("util.jl")
+
 
 end
