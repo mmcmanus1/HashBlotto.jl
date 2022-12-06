@@ -1,8 +1,8 @@
 """
     greed(City)
 
-A greedy construction heuristic solution: Greedily maximize
-the distance/time ratio of the next junction. Reward is scaled down by 
+Greedily construct a solution to the HashCode Challenge given a `City`
+Maximizing the distance/time ratio of the next junction. Reward is scaled down by 
 2 * repetitions of a street [if more than once] to discourage repeated edges
 
 ------------------------------------------------------------------------
@@ -16,26 +16,24 @@ function greed(city; penalty=1)
     moves = Vector{Vector{Int}}(undef, nb_cars)
     visited = Dict{Int,Int}()
     graph = graph_structure(city)
-    # kruskal_result, minimumCost = kruskal(graph, streets)
 
-    # @info "starting junction $starting_junction"
-    # @info "total duratoin $total_duration"
-    #setting up the number of cars we are looking allowedTime
-    for c in 1:nb_cars
+    # setting up the number of cars we are looking cars
+    for car in 1:nb_cars
         move = [starting_junction]
         duration = 0
 
+        # Ensure within AllowedTime
         while duration <= total_duration
             current_junction = last(move)
             last_node = current_junction[1]
             street_candidates = graph[last_node]
-
             # @info "street candidates $street_candidates"
-            #check to make sure we have a street to go to
+
+            # check to make sure we have a street to go to
             if length(street_candidates) == 0
                 break
             else
-                max_junction = get_best_street(graph, street_candidates, visited, penalty)
+                max_junction = get_best_street(street_candidates, visited, penalty)
                 # @info "max junction $max_junction"
                 if duration + max_junction[2] > total_duration
                     break
@@ -45,7 +43,7 @@ function greed(city; penalty=1)
                     # @info "move $move"
                 end
 
-
+                # Increment the visited counter
                 if max_junction[1] in keys(visited)
                     visited[max_junction[1]] += 1
                 else
@@ -53,7 +51,7 @@ function greed(city; penalty=1)
                 end
             end
         end
-        moves[c] = move
+        moves[car] = move
     end
     return Solution(moves)
 end
@@ -61,14 +59,14 @@ end
 """
     get_best_street(current_junction, street_candidates, visited)
 
-Returns the best street that the google maps car can go to. 
+Returns the ``best'' adjacent street based on our greedy heuristic from get_junction_value
 """
-function get_best_street(graph, street_candidates, visited, penalty=1)
+function get_best_street(street_candidates, visited, penalty=1)
     max_node = street_candidates[1]
     max_val = -10
 
     for next_node in street_candidates
-        value = get_value(graph, next_node, visited, penalty)
+        value = get_junction_value(next_node, visited, penalty)
         if value > max_val
             max_val = value
             max_node = next_node
@@ -79,20 +77,20 @@ function get_best_street(graph, street_candidates, visited, penalty=1)
 end
 
 """
-    get_value (current_junction, visited)
+    get_junction_value (current_junction, visited, penalty)
 
 Returns the value of the current junction. 
 The current reward system acting under the reward equation:
 
-val * penalty ^ visited[node] + (penalty) * adjacent_reward
+val * penalty ^ visited[node] 
 
 """
-function get_value(graph, next_node, visited, penalty)
+function get_junction_value(next_node, visited, penalty)
     node = next_node[1]
     val = next_node[3]
 
-    if next_node[1] in keys(visited)
-        adjacent_reward = adj_reward(graph, next_node, visited)
+    if node in keys(visited)
+        # adjacent_reward = adj_reward(graph, next_node, visited) #+ (penalty) * adjacent_reward
         # @info "adjacent reward $adjacent_reward"
 
         return val * penalty^visited[node]

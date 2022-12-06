@@ -6,7 +6,7 @@ graph = graph_structure(city)
 
 @time solution = greed(city; penalty=0.01)
 distance = total_distance(solution, city)
-best_penalty, best_distance = Distributions(city, 0, .05, .001)
+best_penalty, best_distance = Distributions(city, 0, 0.05, 0.001)
 #look at all the streets
 # @time streets = street_structure(city)
 

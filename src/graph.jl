@@ -10,7 +10,7 @@ function graph_structure(city::City)
     #adj_list = {start_node_index: [(end_node_index, duration, distance/duration)]}
     adj_list = Dict{Int,Vector{Tuple{Int,Int,Float16}}}()
 
-    for (index, street) in enumerate(city.streets)
+    for street in city.streets
         A = street.endpointA
         B = street.endpointB
 
@@ -44,23 +44,19 @@ end
 """
     street_structure(city::City)
 
-Returns a dictionary of the streets in the city each with the duration and value 
-The keys are a tuple of the start and end node of the street 
-The values are a tuple of the duration and value of the street
+Returns a dictionary of 
+    keys: street endpoints (A, B)
+    values: duration
 """
 
 function street_structure(city::City)
     #adj_graph = {(start_node_index, end_node_index): duration}
     adj_graph = Dict{Tuple{Int64,Int64},Float16}()
 
-    for (index, street) in enumerate(city.streets)
+    for street in city.streets
         A = street.endpointA
         B = street.endpointB
-
-        #data that we want to keep track of is just:
-        length = street.distance
-        duration = street.duration
-        data = duration # Hey Matt, you never actually made the tuple, so edited docstring
+        data = street.duration
 
         #adj_graph information
         adj_graph[(A, B)] = data
