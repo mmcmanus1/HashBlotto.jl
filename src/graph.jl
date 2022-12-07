@@ -70,7 +70,6 @@ function street_structure(city::City)
     return adj_graph
 end
 
-<<<<<<< HEAD
 """
     adj_reward(graph, street_candidates, visited)
 
@@ -170,5 +169,3 @@ function kruskal(graph, street_structure)
 
     return result, minimumCost
 end
-=======
->>>>>>> 47eafd7fded6dd6380ceca8a394565020bd9375e
