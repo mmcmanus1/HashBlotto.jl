@@ -3,7 +3,7 @@
 
 Given the city the function will return a precomupted adjacency dictionary.
 The keys of the dictionary will hold the the index of the vertice
-The values of the dictionary will be a list of tuples of (next_node_index, distance, duration, distance/duration)
+The values of the dictionary will be a list of tuples of (next_node_index, duration, distance/duration)
 
 """
 function graph_structure(city::City)
@@ -70,6 +70,7 @@ function street_structure(city::City)
     return adj_graph
 end
 
+<<<<<<< HEAD
 """
     adj_reward(graph, street_candidates, visited)
 
@@ -169,3 +170,5 @@ function kruskal(graph, street_structure)
 
     return result, minimumCost
 end
+=======
+>>>>>>> 47eafd7fded6dd6380ceca8a394565020bd9375e
