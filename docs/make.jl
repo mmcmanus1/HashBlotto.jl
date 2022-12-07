@@ -14,7 +14,10 @@ makedocs(;
         edit_link="main",
         assets=String[],
     ),
-    pages=["Home" => "index.md"],
+    pages=[
+        "Home" => "index.md",
+        "Algorithms" => "algorithms.md",
+    ],
 )
 
 deploydocs(; repo="github.com/mmcmanus1/HashBlotto.jl", devbranch="main")

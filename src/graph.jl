@@ -28,7 +28,7 @@ function graph_structure(city::City)
             adj_list[A] = [forward_data]
         end
 
-        #check the bidirectionality 
+        #check the bidirectionality
         if street.bidirectional
             if B in keys(adj_list)
                 push!(adj_list[B], reverse_data)
@@ -44,7 +44,7 @@ end
 """
     street_structure(city::City)
 
-Returns a dictionary of 
+Returns a dictionary of
     keys: street endpoints (A, B)
     values: duration
 """
@@ -73,7 +73,7 @@ end
 """
     adj_reward(graph, street_candidates, visited)
 
-Given the graph structure the function will look at the 
+Given the graph structure the function will look at the
 street candidates and the visited nodes and return the "value" of each one
 
 The value will be calculated by:
@@ -119,7 +119,7 @@ function kruskal(graph, street_structure)
 
     i = 0 #index for result
     e = 0 #index for edges
-    #just sort the graphs byt he weights 
+    #just sort the graphs byt he weights
 
     #sort the edges by the value
     sorted_edges = sort(
@@ -129,7 +129,7 @@ function kruskal(graph, street_structure)
 
     sorted_edge_indexs = Dict{Int,Tuple{Int,Int}}()
 
-    #each start and end vertex will have 
+    #each start and end vertex will have
     for (index, edge) in enumerate(sorted_edges)
         sorted_edge_indexs[index] = edge
     end
@@ -137,7 +137,7 @@ function kruskal(graph, street_structure)
     parent = Vector{Int}(undef, length(graph))
     rank = Vector{Int}(undef, length(graph))
 
-    #go through all the vertices 
+    #go through all the vertices
     for vertice in keys(graph)
         push!(parent, vertice)
         push!(rank, 0)
