@@ -7,6 +7,7 @@ graph = graph_structure(city)
 @time solution = greed(city; penalty=0.01)
 distance = total_distance(solution, city)
 
+
 # graph_structure(city::City)
 
 function upper_bound(city::City)
