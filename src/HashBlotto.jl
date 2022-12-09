@@ -8,6 +8,7 @@ module HashBlotto
 
 using HashCode2014
 using SparseArrays
+using BenchmarkTools
 
 export greed, get_best_street, get_junction_value
 export graph_structure, street_structure, adj_reward, kruskal

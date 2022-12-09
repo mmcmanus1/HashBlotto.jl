@@ -32,20 +32,22 @@ function greed(city; penalty=0.01)
             else
                 #returns the best possible street to go to according to our greedy heuristic
                 max_junction = get_best_street(street_candidates, visited, penalty)
-                
-                #ensures we do not go over the time limit
-                if duration + max_junction[2] > total_duration
+                max_node_number = max_junction[1]
+                max_node_duration = max_junction[2]
+
+                #Ensures we do not go over the time limit by adding a street that wouldn't allow us to go over the time limit
+                if duration + max_node_duration > total_duration
                     break
                 else
-                    duration += max_junction[2]
-                    push!(move, max_junction[1])
+                    duration += max_node_duration
+                    push!(move, max_node_number)
                 end
 
                 # Increment the visited counter
-                if max_junction[1] in keys(visited)
-                    visited[max_junction[1]] += 1
+                if max_node_number in keys(visited)
+                    visited[max_node_number] += 1
                 else
-                    visited[max_junction[1]] = 1
+                    visited[max_node_number] = 1
                 end
             end
         end
