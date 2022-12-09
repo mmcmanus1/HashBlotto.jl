@@ -163,7 +163,6 @@ function kruskal(graph, street_structure)
 
     minimumCost = 0
     for edge in result
-        @info "edge $edge"
         minimumCost += edge[3]
     end
 
