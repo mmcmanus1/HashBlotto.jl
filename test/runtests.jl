@@ -29,4 +29,7 @@ DocMeta.setdocmeta!(HashBlotto, :DocTestSetup, :(using HashBlotto); recursive=tr
     @testset verbose = true "get best street test" begin
         include("get-best-street-test.jl")
     end
+    @testset verbose = true "upper bound test" begin
+        include("upper-bound-test.jl")
+    end
 end

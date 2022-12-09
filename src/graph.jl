@@ -6,7 +6,7 @@ The keys of the dictionary will hold the the index of the vertice
 The values of the dictionary will be a list of tuples of (next_node_index, duration, distance/duration)
 
 """
-function graph_structure(city::City)
+function graph_structure(city::City; bidir=true)
     #adj_list = {start_node_index: [(end_node_index, duration, distance/duration)]}
     adj_list = Dict{Int,Vector{Tuple{Int,Int,Float16}}}()
 
@@ -29,7 +29,7 @@ function graph_structure(city::City)
         end
 
         #check the bidirectionality
-        if street.bidirectional
+        if street.bidirectional && bidir
             if B in keys(adj_list)
                 push!(adj_list[B], reverse_data)
             else

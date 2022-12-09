@@ -2,6 +2,12 @@ using HashCode2014
 using HashBlotto
 
 city = read_city()
+solution = greed(city; penalty=0.01)
+total_distance(solution, city)
+
+upper_bound(city::City, time) > total_distance(solution, city)
+upper_bound(city::City)
+city = read_city()
 graph = graph_structure(city)
 
 @time solution = greed(city; penalty=0.01)
