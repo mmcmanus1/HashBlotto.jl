@@ -6,7 +6,7 @@ that allows teleportation between vertices
 """
 
 function upper_bound(city::City, time)
-    graph_struct = graph_structure(city, bidir = false)
+    graph_struct = graph_structure(city; bidir=false)
     street_durs = collect(values(graph_struct))
     clean_streets = Tuple{Int64,Int64,Float16}[] # (B, dur, ratio)
     for a in street_durs # Remove nested listing
