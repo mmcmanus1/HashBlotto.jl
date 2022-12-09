@@ -3,7 +3,7 @@
 
 Given the city the function will return a precomupted adjacency dictionary.
 The keys of the dictionary will hold the the index of the vertice
-The values of the dictionary will be a list of tuples of (next_node_index, duration, distance/duration)
+The values of the dictionary will be a list of tuples of (next node's index, duration, distance/duration)
 
 """
 function graph_structure(city::City; bidir=true)
