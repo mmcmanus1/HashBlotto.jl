@@ -55,7 +55,7 @@ $$\forall p \in \mathcal{P}, \text{coverage}(p^*) > \text{coverage}(p), (v_i, v_
 
 Naturally, a relaxation of this problem would be to remove the edge constraint (equivalently, to allow teleportation between vertices) and solve 
 
-$$p | \forall p_{x_i} \in \mathcal{P}, \text{coverage}(p) > \text{coverage}(p_{x_i})$$
+$$\forall p \in \mathcal{P}, \text{coverage}(p^*) > \text{coverage}(p)$$
 
 The distance of the unconstrained path is a trivial upper bound, since we are taking the supremum over all possibilities, so we are non-dereasing by removing constraints and increasing the search space. 
 
