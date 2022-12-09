@@ -66,6 +66,8 @@ The implementation sorted the paths in reverse order in terms of the $\frac{\tex
 took the path that had the highest ratio, and traversed it, and removed it from the list of possible paths. This meant that at each 
 timestep, each car was able to teleport to a different vertex to maximize its distance, consistent with our mathematical formulation. To not deal with corner cases of time limits, we allowed paths to go over the allowed time as required by the last path, since this would preserve the upper bound property. 
 
+Overall, our testing is consistent with our peers, and when we ran our upper bound on the full length of time (54000 seconds), our upper bound gave us the street length of Paris, which gave us confidence as to implementation correctness. 
+
 ## Unexplored / Unfinished Ideas for Improvement
 
 After completing the algorithm we had two ideas to improve the algorithm.
