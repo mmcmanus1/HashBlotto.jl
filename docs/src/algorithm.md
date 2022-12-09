@@ -21,7 +21,7 @@ The Algorithm that we came up with is a greedy algorithm that goes through each 
 
     3. Once the best street is selected, record the street seen in a dictionary that keeps track of the number of times we have seen a street
 
-    4. Continue to repeat the algorithm until you reach a dead end or run out of time. 
+    4. Continue to repeat the algorithm until you reach a dead end or run out of time. Once a car has either reached a dead end or runt out of time a new car will start again if there is another google street view car available.
 
 ### Value 
 
@@ -75,3 +75,9 @@ After completing the algorithm we had two ideas to improve the algorithm.
 1: Look at the potential next nodes adjacent steets and look to see if we had or had not been down those streets before. We then give streets a reward or penalty factor depending on how many explored / unexplored streets were connected to the potential next node. Looking at the results of implementing this into the reward function that we found, it did not improve the results.
 
 2: Recreate Kruskal's algorithm, and see if we can use it to find the best possible path to take. We decided against this because we thought it may interfere too much with the greedy type algorithm that we were using and thought it would be too much of a change to the algorithm.
+
+## Efficiency Challenges
+
+The main efficiency challenge that we ran into was the design of the graph. In order to run a more efficient algorithm we reconstructed our graph by constructing an adjacency dictionary that mapped a node index to a list of all the nodes that it was connected to which kept track of the duration and the value of the street (distance / duration). This allowed us to run the algorithm much faster because we did not have to iterate through the entire list of streets to find the next street to take or recompute the value of the street every time we called it. 
+
+Outside of this we found little to no other efficiency challenges. As spoke about above we investiaged the ideas above, but decided against it as we didn't find an improvement in distance. Through this process we created the function street structure which was to be used for kruskal's algorithm. We decided to keep it in the code as it may be useful for future users if they wanted to implement kruskal's algorithm.
