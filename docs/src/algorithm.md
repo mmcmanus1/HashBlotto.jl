@@ -81,3 +81,6 @@ After completing the algorithm we had two ideas to improve the algorithm.
 The main efficiency challenge that we ran into was the design of the graph. In order to run a more efficient algorithm we reconstructed our graph by constructing an adjacency dictionary that mapped a node index to a list of all the nodes that it was connected to which kept track of the duration and the value of the street (distance / duration). This allowed us to run the algorithm much faster because we did not have to iterate through the entire list of streets to find the next street to take or recompute the value of the street every time we called it. 
 
 Outside of this we found little to no other efficiency challenges. As spoke about above we investiaged the ideas above, but decided against it as we didn't find an improvement in distance. Through this process we created the function street structure which was to be used for kruskal's algorithm. We decided to keep it in the code as it may be useful for future users if they wanted to implement kruskal's algorithm.
+
+We also made sure everything was type stable and everything that we could precompute we did.
+

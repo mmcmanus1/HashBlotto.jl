@@ -59,7 +59,7 @@ end
 """
     get_best_street(current_junction, street_candidates, visited)
 
-Returns the "best" adjacent junction based on our greedy heuristic from get_junction_value
+Returns the "best" adjacent junction based on our greedy heuristic from "get_junction_value"
 """
 function get_best_street(street_candidates, visited, penalty=0.01)
     max_junction = street_candidates[1]
