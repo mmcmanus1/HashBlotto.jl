@@ -48,10 +48,10 @@ The way we found this was by looking at the distribution of the differnet penalt
 
 ## Analysis of Upper Bound
 
-Our upper bound works on Polya's principle of solving a simpler problem to adapt one to our own. For our problem, we need to find a path in the set of paths $\mathcal{P}$ with vertices $v_i$ such that 
+Our upper bound works on Polya's principle of adapting a solution from a simpler problem. Formally,
+our problem is to find a maximal length sequence $p^* = [v_i] \mathcal{P}$ with vertices $v_i$ such that 
 
-$$p | \forall p_{x_i} \in \mathcal{P}, \text{coverage}(p) > \text{coverage}(p_{x_i})$$
-and $$(v_i, v_{i+1}) \in E$$
+$$\forall \;p \in \mathcal{P}, \text{coverage}(p^*) > \text{coverage}(p), \; (v_i, v_{i+1}) \in E$$
 
 Naturally, a relaxation of this problem would be to remove the edge constraint (equivalently, to allow teleportation between vertices) and solve 
 
