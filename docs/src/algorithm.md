@@ -52,21 +52,21 @@ The way we found this was by looking at the distribution of the differnet penalt
 Our upper bound works on Polya's principle of adapting a solution from a simpler problem. Formally,
 our problem is to find a maximal length sequence $p^* = [v_i] \in \mathcal{P}$ with vertices $v_i$ such that 
 
-$$\forall p \in \mathcal{P}, \text{coverage}(p^*) \geq \text{coverage}(p), (v_i, v_{i+1}) \in E$$
+$$\forall p \in \mathcal{P}, \text{coverage}(p^*) \geq \text{coverage}(p), (v_i, v_{i+1}) \in E, \text{time}(p^*) \leq \text{Allowed Time}$$
 
 A natural relaxation of this problem would be to remove the edge constraint (equivalently, to allow teleportation between vertices) and solve the following problem:
 
-$$\forall p \in \mathcal{P}, \text{coverage}(p^*) \geq \text{coverage}(p)$$
+$$\forall p \in \mathcal{P}, \text{coverage}(p^*) \geq \text{coverage}(p), \text{time}(p^*) \leq \text{Allowed Time}$$
 
 Under such a relaxation, the distance of the unconstrained path is a trivial upper bound; to find an optimal path, we take the supremum over all possibilities in $\mathcal{P}$ [in this case, a maximum, since $\mathcal{P}$ is finite]. The maximum is non-decreasing under the addition of more elements (which is what happens when we remove constraints, unless we happen to end up with the same problem), so our upper bound in the relaxation is an upper bound for both problems.
 
 With the formal proof out of the way, let's get to the implementation. 
 
 The implementation sorted the paths in reverse order in terms of the $\frac{\text{distance}}{\text{duration}}$ ratio,
-took the path that had the highest ratio, and traversed it, and removed it from the list of possible paths. This meant that at each 
-timestep, each car was able to teleport to a different vertex to maximize its distance, consistent with our mathematical formulation. To not deal with corner cases of time limits, we allowed paths to go over the allowed time as required by the last path, since this would preserve the upper bound property. 
+took the path that had the highest ratio, traversed it, and removed it from the list of possible paths. This meant that at each 
+timestep, each car was able to teleport to a different vertex to maximize its distance, consistent with our mathematical formulation. We used a graph structure that only had unidirectional streets, so as to not go through a street twice [teleportation meant it didn't matter which we kept]. To not deal with the corner cases of time limits, we allowed paths to go over the allowed time as required by the last path, since this would preserve the upper bound property. To this end, we use a further relaxation by having a variable allowed time which is $\geq \text{Allowed Time}$.
 
-Overall, our testing is consistent with our peers, and when we ran our upper bound on the full length of time (54000 seconds), our upper bound gave us the street length of Paris, which gave us confidence as to implementation correctness. 
+Overall, our result is consistent with our peer's leaderboard result, and when we ran our upper bound test on the full length of time (54000 seconds), our upper bound gave us the street length of Paris, which gave us confidence as to implementation correctness. 
 
 ## Unexplored / Unfinished Ideas for Improvement
 
