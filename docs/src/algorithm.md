@@ -31,7 +31,7 @@ $$ \text{value} = \frac{\text{distance}}{\text{time}} $$
 
 ### Penalty 
 
-If we had already been traversed down a street we would encorporate a penalty factor to the value. The penalty factor that we used was $$f(v, p, n) = v * (p)^n$$ where v is value (distance/time ), p is the penalty factor, and n is the number of times we have traversed down that street. 
+If we had already been traversed down a street we would encorporate a penalty factor to the value. The penalty factor that we used was $$f(v, p, n) = v * (p)^{n}$$ where v is value (distance/time ), p is the penalty factor, and n is the number of times we have traversed down that street. 
 
 This results in the following functions:
 
@@ -50,13 +50,13 @@ The way we found this was by looking at the distribution of the differnet penalt
 ## Analysis of Upper Bound
 
 Our upper bound works on Polya's principle of adapting a solution from a simpler problem. Formally,
-our problem is to find a maximal length sequence $p^* = [v_i] \in \mathcal{P}$ with vertices $v_i$ such that 
+our problem is to find a maximal length sequence $p^{*} = [v_i] \in \mathcal{P}$ with vertices $v_i$ such that 
 
-$$\forall p \in \mathcal{P}, \text{coverage}(p^*) \geq \text{coverage}(p), (v_i, v_{i+1}) \in E, \text{time}(p^*) \leq \text{Allowed Time}$$
+$$\forall p \in \mathcal{P}, \text{coverage}(p^{*}) \geq \text{coverage}(p), (v_i, v_{i+1}) \in E, \text{time}(p^{*}) \leq \text{Allowed Time}$$
 
 A natural relaxation of this problem would be to remove the edge constraint (equivalently, to allow teleportation between vertices) and solve the following problem:
 
-$$\forall p \in \mathcal{P}, \text{coverage}(p^*) \geq \text{coverage}(p), \text{time}(p^*) \leq \text{Allowed Time}$$
+$$\forall p \in \mathcal{P}, \text{coverage}(p^{*}) \geq \text{coverage}(p), \text{time}(p^{*}) \leq \text{Allowed Time}$$
 
 Under such a relaxation, the distance of the unconstrained path is a trivial upper bound; to find an optimal path, we take the supremum over all possibilities in $\mathcal{P}$ [in this case, a maximum, since $\mathcal{P}$ is finite]. The maximum is non-decreasing under the addition of more elements (which is what happens when we remove constraints, unless we happen to end up with the same problem), so our upper bound in the relaxation is an upper bound for both problems.
 
