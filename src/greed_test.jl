@@ -3,7 +3,7 @@
 
 Generates a Greedy Solution to the HashCode Challenge
 The overall logic is below:
-    - At every junction look at the adjacent streets and look at their value (duration/distance)
+    - At every junction, look at the adjacent streets and look at their value (duration/distance)
     - If a street has been visited before, we penalize it by making a new value equal: value * (penalty = 0.01 ^ # of times visited)
 
 Each car is sent out one at a time and the car will continue to move until it reaches the end of the time limit or it reaches a dead end.
@@ -82,8 +82,7 @@ end
 Returns the value of the current junction. 
 The current reward system acting under the reward equation:
 
-val * penalty ^ visited[node] 
-
+val * penalty ^ visited[node]
 """
 function get_junction_value(next_junction, visited, penalty)
     node = next_junction[1]
