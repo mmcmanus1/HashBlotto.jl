@@ -21,13 +21,17 @@ The Algorithm that we came up with is a greedy algorithm that goes each car one 
 
 ### Value 
 
-The value that we use is distance / time. The reason we use this is because we want to maximize the distnace we can travel in the given time, so it makes sense to traverse the streets that have the highest distance / time ratio. 
+The value that we use is distance / time. The reason we use this is because we want to maximize the distance we can travel in the given time, so it makes sense to traverse the streets that have the highest distance / time ratio.
+
+$$ \text{value} = \frac{\text{distance}}{\text{time}} $$
 
 ### Penalty 
 
 If we had already been traversed down a street we would encorporate a penalty factor to the value. The penalty factor that we used was $$f(v, p, n) = v * (p)^n$$ where v is value (distance/time ), p is the penalty factor, and n is the number of times we have traversed down that street. 
 
+This results in the following functions:
 
+$$\[ f(value, p, n) =  = \begin{n = 2} \mbox{value,} & \mbox{if } 0 < x < 5 \\ \mbox{n > 1,} & \mbox{value * (p)^n} \end{cases} \]$$
 
 ## The Results
 
