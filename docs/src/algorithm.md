@@ -35,6 +35,7 @@ If we had already been traversed down a street we would encorporate a penalty fa
 This results in the following functions:
 
 if n = 0, then the value is the same as the value that we calculated before.
+
 if n > 1, then the value is the value that we calculated before multiplied by the penalty factor to the power of the number of times we have traversed down that street.
 
 
