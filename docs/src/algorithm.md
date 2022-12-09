@@ -51,15 +51,15 @@ The way we found this was by looking at the distribution of the differnet penalt
 Our upper bound works on Polya's principle of adapting a solution from a simpler problem. Formally,
 our problem is to find a maximal length sequence $p^* = [v_i] \in \mathcal{P}$ with vertices $v_i$ such that 
 
-$$\forall p \in \mathcal{P}, \text{coverage}(p^*) > \text{coverage}(p), (v_i, v_{i+1}) \in E$$
+$$\forall p \in \mathcal{P}, \text{coverage}(p^*) \geq \text{coverage}(p), (v_i, v_{i+1}) \in E$$
 
-Naturally, a relaxation of this problem would be to remove the edge constraint (equivalently, to allow teleportation between vertices) and solve 
+A natural relaxation of this problem would be to remove the edge constraint (equivalently, to allow teleportation between vertices) and solve the following problem:
 
-$$\forall p \in \mathcal{P}, \text{coverage}(p^*) > \text{coverage}(p)$$
+$$\forall p \in \mathcal{P}, \text{coverage}(p^*) \geq \text{coverage}(p)$$
 
-The distance of the unconstrained path is a trivial upper bound, since we are taking the supremum over all possibilities, so we are non-dereasing by removing constraints and increasing the search space. 
+Under such a relaxation, the distance of the unconstrained path is a trivial upper bound; to find an optimal path, we take the supremum over all possibilities in $\mathcal{P}$ [in this case, a maximum, since $\mathcal{P}$ is finite]. The maximum is non-decreasing under the addition of more elements (which is what happens when we remove constraints, unless we happen to end up with the same problem), so our upper bound in the relaxation is an upper bound for both problems. $\qed$
 
-With the formal proof out of the way, this was implemented as follows: 
+With the formal proof out of the way, let's get to the implementation. 
 
 
 ## Unexplored / Unfinished Ideas for Improvement
