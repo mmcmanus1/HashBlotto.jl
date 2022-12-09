@@ -61,6 +61,8 @@ Under such a relaxation, the distance of the unconstrained path is a trivial upp
 
 With the formal proof out of the way, let's get to the implementation. 
 
+The implementation 
+
 
 ## Unexplored / Unfinished Ideas for Improvement
 

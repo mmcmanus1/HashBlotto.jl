@@ -90,8 +90,8 @@ function get_junction_value(next_junction, visited, penalty)
     val = next_junction[3]
 
     if node in keys(visited)
-        return val * penalty^visited[node] 
+        return val * penalty^visited[node]
     else
-        return val 
+        return val
     end
 end

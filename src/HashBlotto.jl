@@ -13,9 +13,7 @@ using BenchmarkTools
 export greed, get_best_street, get_junction_value
 export graph_structure, street_structure, adj_reward, kruskal
 
-
 include("greed_test.jl")
 include("graph.jl")
-
 
 end

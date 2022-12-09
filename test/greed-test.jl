@@ -11,7 +11,7 @@ Tests whether our produced solution is feasible
 function time_varying_street_test()
     city = read_city()
     solution = greed(city; penalty=0.01)
-    is_feasible(solution, city)
+    return is_feasible(solution, city)
 end
 
 @test time_varying_street_test()
