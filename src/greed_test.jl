@@ -1,5 +1,5 @@
 """
-    greed(City)
+    greed(city::City)
 
 Generates a Greedy Solution to the HashCode Challenge
 The overall logic is below:
@@ -9,7 +9,7 @@ The overall logic is below:
 Each car is sent out one at a time and the car will continue to move until it reaches the end of the time limit or it reaches a dead end.
 At that point the next car will start or the solution will be returned.
 """
-function greed(city; penalty=0.01)
+function greed(city::City; penalty=0.01)
     (; total_duration, nb_cars, starting_junction, streets) = city
 
     moves = Vector{Vector{Int}}(undef, nb_cars)
@@ -59,7 +59,7 @@ end
 """
     get_best_street(current_junction, street_candidates, visited)
 
-Returns the "best" adjacent junction based on our greedy heuristic from "get_junction_value"
+Returns the "best" adjacent junction based on our greedy heuristic from ['get_junction_value'](@ref)
 """
 function get_best_street(street_candidates, visited, penalty=0.01)
     max_junction = street_candidates[1]
