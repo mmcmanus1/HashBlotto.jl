@@ -4,6 +4,7 @@ authors = ["mmcmanus1 <mattmcmanus41@gmail.com> and contributors"]
 version = "0.1.0"
 
 [deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
