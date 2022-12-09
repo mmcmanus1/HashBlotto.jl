@@ -31,7 +31,7 @@ If we had already been traversed down a street we would encorporate a penalty fa
 
 This results in the following functions:
 
-$$\[ f(value, p, n) =  = \begin{cases} \mbox{n=0,} & \mbox{if } \text{value} \\ \mbox{n > 1,} & \mbox{\text{value} * (p)^n} \end{cases} \]$$
+$$\[ f(value, p, n) =  = \begin{cases} \mbox{n=0,} & \mbox{if } value \\ \mbox{n > 1,} & \mbox{value * (p)^n} \end{cases} \]$$
 
 ## The Results
 
