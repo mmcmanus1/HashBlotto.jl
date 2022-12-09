@@ -4,23 +4,24 @@
 # HashBlotto's Algorithm for Google Hash Code 2014
 
 ## Introduction
-The Google Hash Code 2014 competition was 
 
-HashBlotto used a greedy algorithm that used a Depth First Search-esque algorithm to maximize the overall distance we oculd traverse given the city input file. How we went about it is seen below. 
+HashBlotto used a greedy algorithm that used a Depth First Search-esque algorithm to maximize the overall distance we could traverse given the city input file. How we went about attempting to solve the problem can be seen below.
 
 ## The Problem
 
-The problem we were presented with is the 2014 Google Hashcode Problem. As seen [here](https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/hashcode2014_final_task.pdf) The goal of the problem is to attempt to cover the maximum possible distance of Paris with eight google street view cars. 
+The problem we were presented with was the 2014 Google Hashcode Problem. As seen [here](https://storage.googleapis.com/coding-competitions.appspot.com/HC/2014/hashcode2014_final_task.pdf) The goal of the problem is to attempt to cover the maximum possible distance of Paris, in this context we were given eight google street view cars to work with and were told to make it into a Julia Package.
 
 ## The Algorithm
 
-The Algorithm that we came up with is a greedy algorithm that goes each car one by one. The algorithm follows the follwing steps:
+The Algorithm that we came up with is a greedy algorithm that goes through each car one by one. The algorithm follows the follwing steps:
 
     1. From the current junction look at all possible street segment that can be taken 
 
     2. Select the best possible street segment that can be taken based off our value / penalty function 
 
-    3. Continue to repeat the algorithm until you reach a dead end or we run out of time. 
+    3. Once the best street is selected, record the street seen in a dictionary that keeps track of the number of times we have seen a street
+
+    4. Continue to repeat the algorithm until you reach a dead end or run out of time. 
 
 ### Value 
 

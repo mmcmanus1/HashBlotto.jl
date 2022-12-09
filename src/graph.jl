@@ -69,35 +69,3 @@ function street_structure(city::City)
 
     return adj_graph
 end
-
-"""
-    adj_reward(graph, street_candidates, visited)
-
-Given the graph structure the function will look at the
-street candidates and the visited nodes and return the "value" of each one
-
-The value will be calculated by:
-+1 for node not visited
-0 for node visited
-
-output: a dictionary of node_index to adj_reward
-"""
-
-function adj_reward(graph, next_node, visited)
-    max_reward = 0
-    max_node = next_node[1]
-
-    for n_adj_junction in graph[max_node]
-        n_adj_node = n_adj_junction[1]
-
-        # @info "n_adj_node $n_adj_node"
-        if n_adj_node in keys(visited)
-            max_node = n_adj_node
-        else
-            max_reward += 1
-            max_node = n_adj_node
-        end
-    end
-
-    return max_reward / length(graph[max_node])
-end
