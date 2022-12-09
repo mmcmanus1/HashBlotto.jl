@@ -62,8 +62,9 @@ Under such a relaxation, the distance of the unconstrained path is a trivial upp
 
 With the formal proof out of the way, let's get to the implementation. 
 
-The implementation 
-
+The implementation sorted the paths in reverse order in terms of the $\frac{\text{distance}}{\text{duration}}$ ratio,
+took the path that had the highest ratio, and traversed it, and removed it from the list of possible paths. This meant that at each 
+timestep, each car was able to teleport to a different vertex to maximize its distance, consistent with our mathematical formulation. To not deal with corner cases of time limits, we allowed paths to go over the allowed time as required by the last path, since this would preserve the upper bound property. 
 
 ## Unexplored / Unfinished Ideas for Improvement
 
