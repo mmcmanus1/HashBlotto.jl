@@ -1,3 +1,6 @@
+\documentclass{article}
+\usepackage{amsmath}
+
 # HashBlotto's Algorithm for Google Hash Code 2014
 
 ## Introduction
@@ -30,11 +33,9 @@ $$ \text{value} = \frac{\text{distance}}{\text{time}} $$
 If we had already been traversed down a street we would encorporate a penalty factor to the value. The penalty factor that we used was $$f(v, p, n) = v * (p)^n$$ where v is value (distance/time ), p is the penalty factor, and n is the number of times we have traversed down that street. 
 
 This results in the following functions:
-
-$$\[ f(value, p, n) =  = \begin{cases} \mbox{n=0,} & \mbox{if } value \\ \mbox{n > 1,} & \mbox{value * $(p)^n$ 
-
-} \end{cases} \]$$
-
+\begin {document}
+\[ f(value, p, n) =  = \begin{cases} \mbox{n=0,} & \mbox{if } value \\ \mbox{n > 1,} & \mbox{value * $(p)^n$ } \end{cases} \]$$
+\end {document}
 ## The Results
 
 The best distance that we found using this algorithm was 1,544,934. 
