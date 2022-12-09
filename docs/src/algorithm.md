@@ -48,7 +48,19 @@ The way we found this was by looking at the distribution of the differnet penalt
 
 ## Analysis of Upper Bound
 
-Analysis of the Upper Bound will go here
+Our upper bound works on Polya's principle of solving a simpler problem to adapt one to our own. For our problem, we need to find a path in the set of paths $\mathcal{P}$ with vertices $v_i$ such that 
+
+$$p | \forall p_{x_i} \in \mathcal{P}, \text{coverage}(p) > \text{coverage}(p_{x_i})$$
+and $$(v_i, v_{i+1}) \in E$$
+
+Naturally, a relaxation of this problem would be to remove the edge constraint (equivalently, to allow teleportation between vertices) and solve 
+
+$$p | \forall p_{x_i} \in \mathcal{P}, \text{coverage}(p) > \text{coverage}(p_{x_i})$$
+
+The distance of the unconstrained path is a trivial upper bound, since we are taking the supremum over all possibilities, so we are non-dereasing by removing constraints and increasing the search space. 
+
+With the formal proof out of the way, this was implemented as follows: 
+
 
 ## Unexplored / Unfinished Ideas for Improvement
 
